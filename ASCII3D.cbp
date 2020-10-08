@@ -31,6 +31,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="headers/console.h" />
+		<Unit filename="source/console.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
