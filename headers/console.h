@@ -6,4 +6,8 @@
 HANDLE write_Handle;
 HANDLE read_Handle;
 
-int console_Init();
+int consoleInit();
+
+COORD buffer_Size;
+
+SMALL_RECT window_Size;

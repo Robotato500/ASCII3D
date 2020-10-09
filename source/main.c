@@ -4,7 +4,7 @@
 
 
 int main() {
-    console_Init();
+    consoleInit();
     getchar();
     return 0;
 }
