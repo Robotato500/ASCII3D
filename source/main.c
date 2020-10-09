@@ -2,9 +2,13 @@
 #include <windows.h>
 #include "../headers/console.h"
 
+#define SCREEN_WIDTH 80
+#define SCREEN_HEIGHT 40
+
+CHAR_INFO screen_Buffer[SCREEN_WIDTH*SCREEN_HEIGHT];
 
 int main() {
-    consoleInit();
+    consoleInit(SCREEN_WIDTH, SCREEN_HEIGHT, 0, 16);
     getchar();
     return 0;
 }

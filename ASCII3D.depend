@@ -10,14 +10,14 @@
 
 1602156192 c:\users\usuario\manu\projects\ascii3d\headers\console.h
 
-1602235616 source:c:\dev\projects\c(++)\ascii3d\source\console.c
+1602249513 source:c:\dev\projects\c(++)\ascii3d\source\console.c
 	<stdio.h>
 	<windows.h>
 
-1602235776 source:c:\dev\projects\c(++)\ascii3d\source\main.c
+1602247553 source:c:\dev\projects\c(++)\ascii3d\source\main.c
 	<stdio.h>
 	<windows.h>
 	"../headers/console.h"
 
-1602235883 c:\dev\projects\c(++)\ascii3d\headers\console.h
+1602242732 c:\dev\projects\c(++)\ascii3d\headers\console.h
 
