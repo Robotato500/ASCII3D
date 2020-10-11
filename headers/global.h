@@ -1,0 +1,10 @@
+#pragma once
+#include <chrono>
+#include "Console.h"
+
+
+extern std::chrono::time_point<std::chrono::system_clock> clockA;
+extern std::chrono::time_point<std::chrono::system_clock> clockB;
+extern int deltaTime;
+extern Console console;
+extern float average(float *numbers, int numNumbers);
