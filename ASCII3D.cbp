@@ -31,8 +31,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="headers/Console.h" />
+		<Linker>
+			<Add option="-static-libstdc++" />
+			<Add option="-static-libgcc" />
+			<Add option="-static" />
+		</Linker>
 		<Unit filename="headers/Image.h" />
+		<Unit filename="headers/console.h" />
 		<Unit filename="headers/global.h" />
 		<Unit filename="headers/input.h" />
 		<Unit filename="source/Console.cpp" />

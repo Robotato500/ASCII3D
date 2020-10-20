@@ -20,13 +20,15 @@ int main() {
     console.clearScreen(0b00000000);
     console.refresh();
 
-    Image texture("texture1.bmp");
+    Image texture("C:/Users/Usuario/Manu/Projects/ASCII3D/texture1.bmp");
 
     while (true) {
-        for (int y = 0; y < console.sHeight; y++) {
-                for (int x = 0; x < console.sWidth; x++) {
-                    console.buffer[x + console.sWidth*y].Attributes = texture.buffer[x + texture.iWidth*y];
-                    console.buffer[x + console.sWidth*y].Char.AsciiChar = 219;
+        for (int k = 0; k < console.sHeight; k++) {
+                for (int l = 0; l < console.sWidth; l++) {
+                    int x = (int)l*(texture.iWidth/console.sWidth);
+                    int y = (int)k*(texture.iWidth/console.sWidth);
+                    console.buffer[l + console.sWidth*k].Attributes = texture.buffer[x + texture.iWidth*y];
+                    console.buffer[l + console.sWidth*k].Char.AsciiChar = 219;
                 }
         }
         console.refresh();
