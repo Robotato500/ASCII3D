@@ -10,6 +10,7 @@
 #include "../headers/global.h"
 #include "../headers/input.h"
 #include "../headers/Image.h"
+#define PI 3.14159265
 
 /*  std::string texto = "la chucha chucheira";
     char texto_Array[texto.length() + 1];
@@ -20,20 +21,31 @@ int main() {
     console.clearScreen(0b00000000);
     console.refresh();
 
-    Image texture("C:/Users/Usuario/Manu/Projects/ASCII3D/texture1.bmp");
+    Image texture("C:/Users/Usuario/Manu/Projects/ASCII3D/algo.bmp");
 
+    int jaja = 0;
+    int tamano = texture.iWidth*texture.iHeight;
+    int a[4] = {rand(), rand(), rand(), rand()};
     while (true) {
         for (int k = 0; k < console.sHeight; k++) {
                 for (int l = 0; l < console.sWidth; l++) {
-                    int x = (int)l*(texture.iWidth/console.sWidth);
-                    int y = (int)k*(texture.iWidth/console.sWidth);
-                    console.buffer[l + console.sWidth*k].Attributes = texture.buffer[x + texture.iWidth*y];
+
+                    float fx = ((l-64)*cos(jaja*PI/180) - (k-64)*sin(jaja*PI/180) + 64)*(texture.iWidth/console.sWidth)*sin(jaja*PI/180 + a[2])  + sin(jaja*PI/180 + a[0]);// + sin(jaja*PI/180)*100;
+                    float fy = ((l-64)*sin(jaja*PI/180) + (k-64)*cos(jaja*PI/180) + 64)*(texture.iHeight/console.sHeight)*sin(jaja*PI/180 + a[3]) + sin(jaja*PI/180 + a[1]);// + cos(jaja*PI/180)*100;
+
+                    int x = (int)fx; int y = (int)fy;
+                    int modulo = (x + texture.iWidth*y)%tamano;
+                    if (modulo < 0)
+                        modulo += tamano;
+
+                    console.buffer[l + console.sWidth*k].Attributes = texture.buffer[modulo];
                     console.buffer[l + console.sWidth*k].Char.AsciiChar = 219;
                 }
         }
         console.refresh();
         if(processInputs()==69)
             return 0;
+        jaja++;
     }
 }
 
