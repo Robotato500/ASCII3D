@@ -21,7 +21,7 @@ int main() {
     console.clearScreen(0b00000000);
     console.refresh();
 
-    Image texture("C:/Users/Usuario/Manu/Projects/ASCII3D/algo.bmp");
+    Image texture("C:/Users/Usuario/Manu/Projects/ASCII3D/texture1.bmp");
 
     int jaja = 0;
     int tamano = texture.iWidth*texture.iHeight;
@@ -30,8 +30,11 @@ int main() {
         for (int k = 0; k < console.sHeight; k++) {
                 for (int l = 0; l < console.sWidth; l++) {
 
-                    float fx = ((l-64)*cos(jaja*PI/180) - (k-64)*sin(jaja*PI/180) + 64)*(texture.iWidth/console.sWidth)*sin(jaja*PI/180 + a[2])  + sin(jaja*PI/180 + a[0]);// + sin(jaja*PI/180)*100;
-                    float fy = ((l-64)*sin(jaja*PI/180) + (k-64)*cos(jaja*PI/180) + 64)*(texture.iHeight/console.sHeight)*sin(jaja*PI/180 + a[3]) + sin(jaja*PI/180 + a[1]);// + cos(jaja*PI/180)*100;
+                    //float fx = ((l-64)*cos(jaja*PI/180) - (k-64)*sin(jaja*PI/180) + 64)*((float)texture.iWidth/console.sWidth)*sin(jaja*PI/180 + a[2])*2  + sin(jaja*PI/180 + a[0]);// + sin(jaja*PI/180)*100;
+                    //float fy = ((l-64)*sin(jaja*PI/180) + (k-64)*cos(jaja*PI/180) + 64)*((float)texture.iHeight/console.sHeight)*sin(jaja*PI/180 + a[3])*2 + sin(jaja*PI/180 + a[1]);// + cos(jaja*PI/180)*100;
+
+                    float fx = l*((float)texture.iWidth/console.sWidth);
+                    float fy = k*((float)texture.iHeight/console.sHeight);
 
                     int x = (int)fx; int y = (int)fy;
                     int modulo = (x + texture.iWidth*y)%tamano;
@@ -40,6 +43,8 @@ int main() {
 
                     console.buffer[l + console.sWidth*k].Attributes = texture.buffer[modulo];
                     console.buffer[l + console.sWidth*k].Char.AsciiChar = 219;
+
+                    //std::cout<<fx; std::cout<<"\n";
                 }
         }
         console.refresh();
