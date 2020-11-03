@@ -3,9 +3,12 @@ class Player {
 
     public:
         Player();
-        int checkLoop(float rayAngle);
+        int checkLoop(double rayAngle);
+        int prepareCollision(double angulo);
+        int rayCast();
 
-        float angle;
+        double angle;
+
         float xPos;
         float yPos;
 
@@ -13,5 +16,7 @@ class Player {
         float colXY;
         float colYX;
         float colYY;
+
+        float distance;
 
 };

@@ -12,18 +12,19 @@ std::chrono::time_point<std::chrono::system_clock> clockA = std::chrono::system_
 std::chrono::time_point<std::chrono::system_clock> clockB = std::chrono::system_clock::now();
 int deltaTime = 0;
 Console console(SCREEN_WIDTH, SCREEN_HEIGHT, FONT_WIDTH, FONT_HEIGHT, false);
+Image textureFary("C:/Users/Usuario/Manu/Projects/ASCII3D/texture1.bmp");
 double pi = 3.14159265;
 
 bool mapa[8][8] = {
-    {1, 1, 1, 1, 1, 1, 1, 1,}
-    {1, 0, 0, 0, 0, 0, 0, 1,}
-    {1, 0, 0, 0, 0, 0, 0, 1,}
-    {1, 0, 0, 0, 0, 0, 0, 1,}
-    {1, 0, 0, 0, 0, 0, 0, 1,}
-    {1, 0, 0, 0, 0, 0, 0, 1,}
-    {1, 0, 0, 0, 0, 0, 0, 1,}
+    {1, 1, 1, 1, 1, 1, 1, 1},
+    {1, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 1},
     {1, 1, 1, 1, 1, 1, 1, 1}
-}
+};
 
 float average(float *numbers, int numNumbers) {
     int sum = 0;
