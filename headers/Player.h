@@ -17,6 +17,8 @@ class Player {
         float colYX;
         float colYY;
 
+        float texturePosition;
+
         float distance;
 
 };

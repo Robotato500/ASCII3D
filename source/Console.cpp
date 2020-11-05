@@ -88,7 +88,7 @@ Console::clearScreen(int attribute) {
     for (int y = 0; y<sHeight; y++) {
         for (int x = 0; x<sWidth; x++) {
             buffer[x + y*sWidth].Char.AsciiChar = (unsigned char)219;
-            buffer[x + y*sWidth].Attributes = 0;
+            buffer[x + y*sWidth].Attributes = attribute;
         }
     }
     return 0;
@@ -116,11 +116,16 @@ Console::drawPixel(int xPos, int yPos, int attribute, int intensity) {
     buffer[xPos + yPos*sWidth].Attributes = attribute;
 }
 
-Console::drawLine(int lSize, int texIndex, int lPos) {
+Console::drawLine(int lSize, int texIndex, int lPos, float texPos) {
 
-    float lSize2 = (float)lSize/2;
+    float texBufIndex;
+    float consoleBufIndex;
+    if (lSize > console.sHeight)
+        lSize = console.sHeight;
     for (int k = 0; k < lSize; k++) {
-        buffer[lPos + (sWidth/2 - lSize2 + k)*sWidth].Attributes = textureFary.buffer[]
+        consoleBufIndex = lPos +(console.sWidth/2 - lSize/2 + k)*console.sWidth;
+        texBufIndex = texPos*textureFary.iWidth + k*textureFary.iHeight*textureFary.iWidth/lSize;
+        buffer[(int)consoleBufIndex].Attributes = textureFary.buffer[(int)texBufIndex];
     }
-
+    return 0;
 }

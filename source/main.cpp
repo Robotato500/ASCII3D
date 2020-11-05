@@ -10,15 +10,37 @@
 #include "../headers/global.h"
 #include "../headers/input.h"
 #include "../headers/Image.h"
+#include "../headers/Player.h"
 #define PI 3.14159265
 
 /*  std::string texto = "la chucha chucheira";
     char texto_Array[texto.length() + 1];
     strcpy(texto_Array, texto.c_str()); */
 
+
 int main() {
     srand(time(0));
-    console.clearScreen(0b00000000);
+    Player jugador;
+
+    while (true) {
+        //jugador.angle += 0.01;
+        //jugador.xPos += 0.1;
+        //jugador.rayCast();
+
+        for (int i = 0; i < console.sWidth; i++) {
+            float chucha = i/console.sWidth;
+            console.drawLine(128, 1, i, 0.5);
+        }
+        console.refresh();
+        if (processInputs() == 69)
+            return 0;
+    }
+}
+
+
+/*int main() {
+    srand(time(0));
+    console.clearScreen();
     console.refresh();
 
     Image texture("C:/Users/Usuario/Manu/Projects/ASCII3D/texture1.bmp");
@@ -53,5 +75,7 @@ int main() {
         jaja++;
     }
 }
+*/
+
 
 //http://cecilsunkure.blogspot.com/2011/11/windows-console-game-writing-to-console.html
