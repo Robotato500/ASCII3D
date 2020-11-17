@@ -20,17 +20,13 @@
 
 int main() {
     srand(time(0));
-    Player jugador;
+    console.clearScreen();
+    jugador.xPos = 4;
+    jugador.yPos = 4;
 
     while (true) {
-        //jugador.angle += 0.01;
-        //jugador.xPos += 0.1;
-        //jugador.rayCast();
+        jugador.rayCast();
 
-        for (int i = 0; i < console.sWidth; i++) {
-            float chucha = i/console.sWidth;
-            console.drawLine(128, 1, i, 0.5);
-        }
         console.refresh();
         if (processInputs() == 69)
             return 0;

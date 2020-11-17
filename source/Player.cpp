@@ -12,7 +12,7 @@ Player::Player() {
 Player::checkLoop(double rayAngle) {
     int colision = 0;
     float tangente = tan(rayAngle);
-    float cotangente = 1/tan(rayAngle);
+    float cotangente = (float)1/tan(rayAngle);
     while (true) {
         while (!colision) {
             if (colXX > colYX)
@@ -30,7 +30,7 @@ Player::checkLoop(double rayAngle) {
                 break;
             colision = mapa[(int)colYX][(int)colYY];
             if (colision != 0) {
-                distance = (colYX - xPos)*cos(rayAngle) - (colYY- yPos)*sin(rayAngle);
+                distance = (colYX - xPos)*cos(rayAngle) - (colYY - yPos)*sin(rayAngle);
                 texturePosition = colYY - (int)colYY;
                 break;
             }
@@ -56,28 +56,28 @@ Player::rayCast(){
 
         int texture = checkLoop(angleRay);
 
-        console.drawLine((int)console.sHeight/distance, texture, column, texturePosition);
+        console.drawLine(128/distance, texture, column, texturePosition);
 
     }
     return 0;
 }
 
 Player::prepareCollision(double angulo) {
-    if (0 <= angulo && angulo < pi/2) {
+    if ((0 <= angulo) && (angulo < pi/2)) {
         colYX = (int)xPos + 1;
         colYY = yPos + (colYX - xPos)*tan(angulo);
 
         colXY = (int)yPos + 1;
         colXX = xPos + (colXY - yPos)/tan(angulo);
     }
-    else if (pi/2 <= angulo && angulo < pi) {
+    else if ((pi/2 <= angulo) && (angulo < pi)) {
         colYX = (int)xPos - 1;
         colYY = yPos + (colYX - xPos)*tan(angulo);
 
         colXY = (int)yPos + 1;
         colXX = xPos + (colXY - yPos)/tan(angulo);
     }
-    else if (pi <= angulo && angulo < 3*pi/2) {
+    else if ((pi <= angulo) && (angulo < 3*pi/2)) {
         colYX = (int)xPos - 1;
         colYY = yPos + (colYX - xPos)*tan(angulo);
 

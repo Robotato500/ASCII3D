@@ -1,32 +1,27 @@
 #include "../headers/Console.h"
 #include "../headers/global.h"
+#include <math.h>
 
 int keyProcess(KEY_EVENT_RECORD key) {
     int returnValue = 0;
     if (key.bKeyDown) {
         switch(key.wVirtualKeyCode) {
             case VK_LEFT:
-                if (console.cursorPos.X > 0) {
-                    console.cursorPos.X -= 1;
-                }
+                jugador.angle += 0.1;
             break;
 
             case VK_RIGHT:
-                if (console.cursorPos.X < (console.sWidth-1)) {
-                    console.cursorPos.X += 1;
-                }
+                jugador.angle -= 0.1;
             break;
 
             case VK_UP:
-                if (console.cursorPos.Y > 0) {
-                    console.cursorPos.Y -= 1;
-                }
+                jugador.xPos += 0.1*cos(jugador.angle);
+                jugador.yPos += 0.1*sin(jugador.angle);
             break;
 
             case VK_DOWN:
-                if (console.cursorPos.Y < (console.sHeight-1)) {
-                    console.cursorPos.Y += 1;
-                }
+                jugador.xPos -= 0.1*cos(jugador.angle);
+                jugador.yPos -= 0.1*sin(jugador.angle);
             break;
 
             case VK_ESCAPE:

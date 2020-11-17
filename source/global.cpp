@@ -1,6 +1,7 @@
 #include <chrono>
 #include "../headers/global.h"
 #include "../headers/Console.h"
+#include "../headers/Player.h"
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 128
@@ -14,6 +15,7 @@ int deltaTime = 0;
 Console console(SCREEN_WIDTH, SCREEN_HEIGHT, FONT_WIDTH, FONT_HEIGHT, false);
 Image textureFary("C:/Users/Usuario/Manu/Projects/ASCII3D/texture1.bmp");
 double pi = 3.14159265;
+Player jugador;
 
 bool mapa[8][8] = {
     {1, 1, 1, 1, 1, 1, 1, 1},
