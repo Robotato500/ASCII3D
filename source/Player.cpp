@@ -17,10 +17,13 @@ Player::checkLoop(double rayAngle) {
         while (!colision) {
             if (colXX > colYX)
                 break;
-            colision = mapa[(int)colXX][(int)colXY];
+            if (colXX > 7) {colXX = 7;} if (colXY > 7) {colXY = 7;}
+            if (colXX < 0) {colXX = 0;} if (colXY < 0) {colXY = 0;}
+            colision = mapa[(int)colXY][(int)colXX];
             if (colision != 0) {
-                distance = (colXX - xPos)*cos(rayAngle) - (colXY- yPos)*sin(rayAngle);
-                texturePosition = colXX - (int)colXX;
+                //distance = (colXX - xPos)*cos(rayAngle) + (colXY- yPos)*sin(rayAngle);
+                distance = (colXX - xPos)*(colXX - xPos) + (colXY- yPos)*(colXY- yPos);
+                texturePosition = 0.5;//colXX - (int)colXX;
                 break;
             }
             colXY += 1; colXX += cotangente;
@@ -28,10 +31,13 @@ Player::checkLoop(double rayAngle) {
         while (!colision) {
             if (colYX > colXX)
                 break;
-            colision = mapa[(int)colYX][(int)colYY];
+            if (colYX > 7) {colYX = 7;} if (colYY > 7) {colYY = 7;}
+            if (colYX < 0) {colYX = 0;} if (colYY < 0) {colYY = 0;}
+            colision = mapa[(int)colYY][(int)colYX];
             if (colision != 0) {
-                distance = (colYX - xPos)*cos(rayAngle) - (colYY - yPos)*sin(rayAngle);
-                texturePosition = colYY - (int)colYY;
+                //distance = (colYX - xPos)*cos(rayAngle) + (colYY - yPos)*sin(rayAngle);
+                distance = (colXX - xPos)*(colXX - xPos) + (colXY - yPos)*(colXY - yPos);
+                texturePosition = 0.5;//colYY - (int)colYY;
                 break;
             }
             colYX += 1; colYY += tangente;
@@ -52,7 +58,11 @@ Player::rayCast(){
         if (angleRay >= 2*pi)
                 angleRay -= 2*pi;
 
-        prepareCollision(angleRay);
+        colXX = xPos; colYX = xPos;
+        colXY = yPos; colYY = yPos;
+
+        //prepareCollision(angleRay);
+
 
         int texture = checkLoop(angleRay);
 
@@ -91,5 +101,6 @@ Player::prepareCollision(double angulo) {
         colXY = (int)yPos - 1;
         colXX = xPos + (colXY - yPos)/tan(angulo);
     }
+
     return 0;
 }
