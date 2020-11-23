@@ -6,6 +6,7 @@ class Image {
 
         Image(const char* imagePath);
         ~Image();
+        unsigned char findPixel(int x, int y);
 
         unsigned char *buffer;
         long bufferLen;

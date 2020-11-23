@@ -53,6 +53,10 @@ Image::Image(const char* filePath) {
     }
 }
 
+unsigned char Image::findPixel(int x, int y) {
+    return(buffer[x+y*iWidth]);
+}
+
 Image::~Image() {
 }
 

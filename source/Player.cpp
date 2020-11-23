@@ -21,12 +21,12 @@ Player::checkLoop(double rayAngle) {
             if (colXX < 0) {colXX = 0;} if (colXY < 0) {colXY = 0;}
             colision = mapa[(int)colXY][(int)colXX];
             if (colision != 0) {
-                //distance = (colXX - xPos)*cos(rayAngle) + (colXY- yPos)*sin(rayAngle);
                 distance = (colXX - xPos)*(colXX - xPos) + (colXY- yPos)*(colXY- yPos);
-                texturePosition = 0.5;//colXX - (int)colXX;
+                //distance = (colXX - xPos)*cos(rayAngle) + (colXY- yPos)*sin(rayAngle);
+                texturePosition = colXX - (int)colXX;
                 break;
             }
-            colXY += 1; colXX += cotangente;
+            colXY += incX; colXX += cotangente*incX;
         }
         while (!colision) {
             if (colYX > colXX)
@@ -35,12 +35,12 @@ Player::checkLoop(double rayAngle) {
             if (colYX < 0) {colYX = 0;} if (colYY < 0) {colYY = 0;}
             colision = mapa[(int)colYY][(int)colYX];
             if (colision != 0) {
-                //distance = (colYX - xPos)*cos(rayAngle) + (colYY - yPos)*sin(rayAngle);
                 distance = (colXX - xPos)*(colXX - xPos) + (colXY - yPos)*(colXY - yPos);
-                texturePosition = 0.5;//colYY - (int)colYY;
+                //distance = (colYX - xPos)*cos(rayAngle) + (colYY - yPos)*sin(rayAngle);
+                texturePosition = colYY - (int)colYY;
                 break;
             }
-            colYX += 1; colYY += tangente;
+            colYX += incY; colYY += tangente*incY;
         }
         if (colision != 0)
                 break;
@@ -61,7 +61,7 @@ Player::rayCast(){
         colXX = xPos; colYX = xPos;
         colXY = yPos; colYY = yPos;
 
-        //prepareCollision(angleRay);
+        prepareCollision(angleRay);
 
 
         int texture = checkLoop(angleRay);
@@ -73,34 +73,15 @@ Player::rayCast(){
 }
 
 Player::prepareCollision(double angulo) {
-    if ((0 <= angulo) && (angulo < pi/2)) {
-        colYX = (int)xPos + 1;
-        colYY = yPos + (colYX - xPos)*tan(angulo);
+    if ((0 <= angulo) && (angulo < pi/2)) {incY = 1; incX = 1;}
+    else if ((pi/2 <= angulo) && (angulo < pi)) {incY = -1; incX = -1;}
+    else if ((pi <= angulo) && (angulo < 3*pi/2)) {incY = 1; incX = 1;}
+    else {incY = 1; incX = 1;}
 
-        colXY = (int)yPos + 1;
-        colXX = xPos + (colXY - yPos)/tan(angulo);
-    }
-    else if ((pi/2 <= angulo) && (angulo < pi)) {
-        colYX = (int)xPos - 1;
-        colYY = yPos + (colYX - xPos)*tan(angulo);
+    colYX = (int)xPos + incY;
+    colYY = yPos + (colYX - xPos)*tan(angulo);
 
-        colXY = (int)yPos + 1;
-        colXX = xPos + (colXY - yPos)/tan(angulo);
-    }
-    else if ((pi <= angulo) && (angulo < 3*pi/2)) {
-        colYX = (int)xPos - 1;
-        colYY = yPos + (colYX - xPos)*tan(angulo);
-
-        colXY = (int)yPos - 1;
-        colXX = xPos + (colXY - yPos)/tan(angulo);
-    }
-    else {
-        colYX = (int)xPos + 1;
-        colYY = yPos + (colYX - xPos)*tan(angulo);
-
-        colXY = (int)yPos - 1;
-        colXX = xPos + (colXY - yPos)/tan(angulo);
-    }
-
+    colXY = (int)yPos + incX;
+    colXX = xPos + (colXY - yPos)/tan(angulo);
     return 0;
 }

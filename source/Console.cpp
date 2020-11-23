@@ -118,14 +118,13 @@ Console::drawPixel(int xPos, int yPos, int attribute, int intensity) {
 
 Console::drawLine(int lSize, int texIndex, int lPos, float texPos) {
 
-    float texBufIndex;
+    float texBufIndex = textureFary.iWidth*texPos;
     float consoleBufIndex;
     if (lSize > console.sHeight)
         lSize = console.sHeight;
     for (int k = 0; k < lSize; k++) {
-        consoleBufIndex = lPos +(console.sWidth/2 - lSize/2 + k)*console.sWidth;
-        texBufIndex = texPos*textureFary.iWidth + k*textureFary.iHeight*textureFary.iWidth/lSize;
-        buffer[(int)consoleBufIndex].Attributes = textureFary.buffer[(int)texBufIndex];
+        consoleBufIndex = lPos +(int)((float)console.sWidth/2 - (float)lSize/2 + k)*console.sWidth;
+        buffer[(int)consoleBufIndex].Attributes = textureFary.findPixel((int)texBufIndex, (int)(k*(float)textureFary.iHeight/(float)lSize));
     }
     return 0;
 }

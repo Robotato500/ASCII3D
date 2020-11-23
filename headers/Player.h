@@ -23,4 +23,7 @@ class Player {
 
         float distance;
 
+        int incX;
+        int incY;
+
 };
