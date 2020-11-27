@@ -1,5 +1,7 @@
 #pragma once
 #include <chrono>
+#include <iostream>
+#include <filesystem>
 #include "Console.h"
 #include "Image.h"
 #include "Player.h"
@@ -15,3 +17,4 @@ extern double pi;
 extern Player jugador;
 
 extern Image textureFary;
+

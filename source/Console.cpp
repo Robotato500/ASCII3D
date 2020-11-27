@@ -30,7 +30,7 @@ Console::Console(int width, int height, int font_width, int font_height, bool cu
 
     font.dwFontSize.X = (SHORT)font_width;
     font.dwFontSize.Y = (SHORT)font_height;
-    wcscpy(font.FaceName, L"Consolas");
+    wcscpy(font.FaceName, L"Lucida Console");
     SetCurrentConsoleFontEx(wHandle, FALSE, &font);
 
     //GetLargestConsoleWindowSize();

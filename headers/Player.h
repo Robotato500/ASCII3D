@@ -22,6 +22,8 @@ class Player {
         float texturePosition;
 
         float distance;
+        float distanceX;
+        float distanceY;
 
         int incX;
         int incY;
