@@ -8,6 +8,8 @@
 #define FONT_WIDTH 2
 #define FONT_HEIGHT 2
 
+#define TIC
+
 #ifdef TIC
 #define FARYPATH "C:/Users/Usuario/Manu/Projects/ASCII3D/texture1.bmp"
 #endif // TIC

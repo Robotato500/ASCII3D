@@ -13,39 +13,18 @@ Player::Player() {
 Player::checkLoop(double rayAngle) {
     int colision = 0;
     float tangente = tan(rayAngle);
-    float cotangente = (float)1/tan(rayAngle);
+    float cotangente = tan(pi/2 - rayAngle);
     while (true) {
-
-        while (!colision) {
-            distanceY = (colYX - xPos)*(colYX - xPos) + (colYY - yPos)*(colYY - yPos);
-            //distanceY = (colYX - xPos)*cos(rayAngle) + (colYY - yPos)*sin(rayAngle);
-            if (distanceY > distanceX)
-                break;
-            if (colYX > 7) {colYX = 7;} if (colYY > 7) {colYY = 7;}
-            if (colYX < 0) {colYX = 0;} if (colYY < 0) {colYY = 0;}
-
-            colision = mapa[(int)colYY][(int)colYX];
-
-            if (colision != 0) {
-                distance = distanceY;
-                distance = (colYX - xPos)*cos(rayAngle) + (colYY - yPos)*sin(rayAngle);
-                texturePosition = 0.3;//colYY - incY*(int)colYY;
-                break;
-            }
-
-            colYX += incX; colYY += tangente*incX; //evidentenmente esto esta bien: se el signo asi que es simplemente el incrmento por la tangente
-
-        }
 
         while (!colision) {
             distanceX = (colXX - xPos)*(colXX - xPos) + (colXY - yPos)*(colXY - yPos);
             //distanceX = (colXX - xPos)*cos(rayAngle) + (colXY - yPos)*sin(rayAngle);
 
-            if (distanceX > distanceY)
+            if (distanceX >= distanceY)
                 break;
 
-            if (colXX > 7) {colXX = 7;} if (colXY > 7) {colXY = 7;}
-            if (colXX < 0) {colXX = 0;} if (colXY < 0) {colXY = 0;}
+            //if (colXX > 7) {colXX = 7;} if (colXY > 7) {colXY = 7;}
+            //if (colXX < 0) {colXX = 0;} if (colXY < 0) {colXY = 0;}
 
             colision = mapa[(int)colXY][(int)colXX];
 
@@ -56,30 +35,30 @@ Player::checkLoop(double rayAngle) {
                 break;
             }
 
-            colXY += incY; colXX += cotangente*incY; //evidentenmente esto esta bien: se el signo asi que es simplemente el incrmento por la tangente
+            colXY += incY; colXX += abs(cotangente)*incX; //evidentenmente esto esta bien: se el signo asi que es simplemente el incrmento por la tangente
 
         }
 
-        /*while (!colision) {
+        while (!colision) {
             distanceY = (colYX - xPos)*(colYX - xPos) + (colYY - yPos)*(colYY - yPos);
             //distanceY = (colYX - xPos)*cos(rayAngle) + (colYY - yPos)*sin(rayAngle);
             if (distanceY > distanceX)
                 break;
-            if (colYX > 7) {colYX = 7;} if (colYY > 7) {colYY = 7;}
-            if (colYX < 0) {colYX = 0;} if (colYY < 0) {colYY = 0;}
+            //if (colYX > 7) {colYX = 7;} if (colYY > 7) {colYY = 7;}
+            //if (colYX < 0) {colYX = 0;} if (colYY < 0) {colYY = 0;}
 
             colision = mapa[(int)colYY][(int)colYX];
 
             if (colision != 0) {
                 distance = distanceY;
                 distance = (colYX - xPos)*cos(rayAngle) + (colYY - yPos)*sin(rayAngle);
-                texturePosition = 0.3;//colYY - incY*(int)colYY;
+                texturePosition = 0.7;//colYY - incY*(int)colYY;
                 break;
             }
 
             colYX += incX; colYY += tangente*incX; //evidentenmente esto esta bien: se el signo asi que es simplemente el incrmento por la tangente
 
-        }*/
+        }
 
 
         if (colision != 0)
@@ -100,7 +79,14 @@ Player::rayCast(){
         else if (angleRay < 0)
             angleRay += 2*pi;
 
+
+        colXX = xPos; colXY = yPos;
+        colYX = xPos; colYY = yPos;
+
         prepareCollision(angleRay);
+        distanceY = (colYX - xPos)*(colYX - xPos) + (colYY - yPos)*(colYY - yPos);
+        distanceX = (colXX - xPos)*(colXX - xPos) + (colXY - yPos)*(colXY - yPos);
+
 
 
         int texture = checkLoop(angleRay);
@@ -120,11 +106,12 @@ Player::prepareCollision(double angulo) {
     colYX = (int)xPos + incX;               //y esta
     if (incX == -1) {colYX += 1;}
 
-    colYY = yPos + (colYX - xPos)*tan(angulo); //esta formula esta chequeada
+    colYY = yPos + abs((colYX - xPos)*tan(angulo))*incY; //esta formula esta chequeada
 
     colXY = (int)yPos + incY;           //esta parte estoy basttante seguro de que esta bien
     if (incY == -1) {colXY += 1;}
 
-    colXX = xPos + (colXY - yPos)/tan(angulo); //y esta
+    colXX = xPos + abs((colXY - yPos)/tan(angulo))*incX; //y esta
     return 0;
+
 }
