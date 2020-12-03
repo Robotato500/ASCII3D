@@ -17,7 +17,7 @@ int keyProcess(KEY_EVENT_RECORD key) {
             case VK_UP:
                 jugador.xPos += 0.1*cos(jugador.angle);
                 jugador.yPos += 0.1*sin(jugador.angle);
-                if (((jugador.xPos < 1) || (jugador.yPos < 1)) || ((jugador.xPos > 7) || (jugador.yPos > 7))) {
+                if ((jugador.xPos >= 13.5) || (jugador.yPos >= 13.5) || (jugador.xPos <= 1.5) || (jugador.yPos <= 1.5)){
                     jugador.xPos -= 0.1*cos(jugador.angle);
                     jugador.yPos -= 0.1*sin(jugador.angle);
                 }
@@ -26,7 +26,7 @@ int keyProcess(KEY_EVENT_RECORD key) {
             case VK_DOWN:
                 jugador.xPos -= 0.1*cos(jugador.angle);
                 jugador.yPos -= 0.1*sin(jugador.angle);
-                if (((jugador.xPos < 1) || (jugador.yPos < 1)) || ((jugador.xPos > 7) || (jugador.yPos > 7))) {
+                if ((jugador.xPos >= 13.5) || (jugador.yPos >= 13.5) || (jugador.xPos <= 1.5) || (jugador.yPos <= 1.5)){
                     jugador.xPos += 0.1*cos(jugador.angle);
                     jugador.yPos += 0.1*sin(jugador.angle);
                 }

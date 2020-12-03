@@ -26,11 +26,11 @@ Player::checkLoop(double rayAngle) {
             //if (colXX > 7) {colXX = 7;} if (colXY > 7) {colXY = 7;}
             //if (colXX < 0) {colXX = 0;} if (colXY < 0) {colXY = 0;}
 
-            colision = mapa[(int)colXY][(int)colXX];
+            colision = mapa[(int)colXY][(int)colXX + (1 - incX)/2];
 
             if (colision != 0) {
                 distance = distanceX;
-                distance = (colXX - xPos)*cos(rayAngle) + (colXY - yPos)*sin(rayAngle);
+                distance = (colXX - xPos)*cos(jugador.angle) + (colXY - yPos)*sin(jugador.angle);
                 texturePosition = 0.3;//colXX - incX*(int)colXX;
                 break;
             }
@@ -47,11 +47,11 @@ Player::checkLoop(double rayAngle) {
             //if (colYX > 7) {colYX = 7;} if (colYY > 7) {colYY = 7;}
             //if (colYX < 0) {colYX = 0;} if (colYY < 0) {colYY = 0;}
 
-            colision = mapa[(int)colYY][(int)colYX];
+            colision = mapa[(int)colYY + (1 - incY)/2][(int)colYX];
 
             if (colision != 0) {
                 distance = distanceY;
-                distance = (colYX - xPos)*cos(rayAngle) + (colYY - yPos)*sin(rayAngle);
+                distance = (colYX - xPos)*cos(jugador.angle) + (colYY - yPos)*sin(jugador.angle);
                 texturePosition = 0.7;//colYY - incY*(int)colYY;
                 break;
             }
@@ -68,11 +68,11 @@ Player::checkLoop(double rayAngle) {
 }
 
 Player::rayCast(){
-    double angleRay = angle + pi/3;
+    double angleRay = angle + pi/6;
     console.clearScreen();
     for (int column = 0; column < console.sWidth; column++) {
 
-        angleRay -= (2*pi/3)/console.sWidth;
+        angleRay -= (pi/3)/console.sWidth;
 
         if (angleRay >= 2*pi)
             angleRay -= 2*pi;
@@ -91,7 +91,7 @@ Player::rayCast(){
 
         int texture = checkLoop(angleRay);
 
-        console.drawLine(256/distance, texture, column, texturePosition);
+        console.drawLine(300/distance, texture, column, texturePosition);
 
     }
     return 0;
@@ -115,3 +115,5 @@ Player::prepareCollision(double angulo) {
     return 0;
 
 }
+
+//http://www.permadi.com/tutorial/raycast/rayc9.html
