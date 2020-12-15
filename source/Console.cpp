@@ -85,10 +85,16 @@ Console::random() {
 }
 
 Console::clearScreen(int attribute) {
-    for (int y = 0; y<sHeight; y++) {
+    for (int y = 0; y<sHeight/2; y++) {
         for (int x = 0; x<sWidth; x++) {
             buffer[x + y*sWidth].Char.AsciiChar = (unsigned char)219;
-            buffer[x + y*sWidth].Attributes = attribute;
+            buffer[x + y*sWidth].Attributes = 11;
+        }
+    }
+    for (int y = sHeight/2; y<sHeight; y++) {
+        for (int x = 0; x<sWidth; x++) {
+            buffer[x + y*sWidth].Char.AsciiChar = (unsigned char)219;
+            buffer[x + y*sWidth].Attributes = 8;
         }
     }
     return 0;

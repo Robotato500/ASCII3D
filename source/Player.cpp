@@ -4,9 +4,9 @@
 #include "../headers/Player.h"
 
 Player::Player() {
-    xPos = 4;
+    xPos = 8;
     angle = 0;
-    yPos = 4;
+    yPos = 8;
 }
 
 
