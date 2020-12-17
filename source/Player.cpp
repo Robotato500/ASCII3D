@@ -31,11 +31,11 @@ Player::checkLoop(double rayAngle) {
             if (colision != 0) {
                 distance = distanceX;
                 distance = (colXX - xPos)*cos(jugador.angle) + (colXY - yPos)*sin(jugador.angle);
-                texturePosition = 0.3;//colXX - incX*(int)colXX;
+                texturePosition = 0.4;//colXX - incX*(int)colXX;
                 break;
             }
 
-            colXY += incY; colXX += abs(cotangente)*incX; //evidentenmente esto esta bien: se el signo asi que es simplemente el incrmento por la tangente
+            colXY += incY; colXX += cotangente*incY; //evidentenmente esto esta bien: se el signo asi que es simplemente el incrmento por la tangente
 
         }
 
@@ -56,7 +56,7 @@ Player::checkLoop(double rayAngle) {
                 break;
             }
 
-            colYX += incX; colYY += tangente*incX; //evidentenmente esto esta bien: se el signo asi que es simplemente el incrmento por la tangente
+            colYX += incX; colYY += abs(tangente)*incY; //evidentenmente esto esta bien: se el signo asi que es simplemente el incrmento por la tangente
 
         }
 
@@ -68,11 +68,11 @@ Player::checkLoop(double rayAngle) {
 }
 
 Player::rayCast(){
-    double angleRay = angle + pi/6;
+    double angleRay = angle + pi/8;
     console.clearScreen();
     for (int column = 0; column < console.sWidth; column++) {
 
-        angleRay -= (pi/3)/console.sWidth;
+        angleRay -= (pi/4)/console.sWidth;
 
         if (angleRay >= 2*pi)
             angleRay -= 2*pi;
