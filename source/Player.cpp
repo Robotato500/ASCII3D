@@ -9,6 +9,21 @@ Player::Player() {
     yPos = 8;
 }
 
+int Player::roundXCoord(float xCoord) {
+    if (incX == 1)
+        return (int)xCoord;
+    else
+        return ((int)xCoord - 1);
+}
+
+int Player::roundYCoord(float yCoord) {
+    if (incY == 1)
+        return (int)yCoord;
+    else
+        return ((int)yCoord - 1);
+}
+
+
 
 Player::checkLoop(double rayAngle) {
     int colision = 0;
@@ -26,7 +41,7 @@ Player::checkLoop(double rayAngle) {
             //if (colXX > 7) {colXX = 7;} if (colXY > 7) {colXY = 7;}
             //if (colXX < 0) {colXX = 0;} if (colXY < 0) {colXY = 0;}
 
-            colision = mapa[(int)colXY][(int)colXX + (1 - incX)/2];
+            colision = mapa[roundYCoord(colXY)][(int)colXX];
 
             if (colision != 0) {
                 distance = distanceX;
@@ -47,7 +62,7 @@ Player::checkLoop(double rayAngle) {
             //if (colYX > 7) {colYX = 7;} if (colYY > 7) {colYY = 7;}
             //if (colYX < 0) {colYX = 0;} if (colYY < 0) {colYY = 0;}
 
-            colision = mapa[(int)colYY + (1 - incY)/2][(int)colYX];
+            colision = mapa[(int)colYY][roundXCoord(colYX)];
 
             if (colision != 0) {
                 distance = distanceY;

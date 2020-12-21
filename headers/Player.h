@@ -8,6 +8,8 @@ class Player {
         int checkLoop(double rayAngle);
         int prepareCollision(double angulo);
         int rayCast();
+        int roundXCoord(float xCoord);
+        int roundYCoord(float yCoord);
 
         double angle;
 
