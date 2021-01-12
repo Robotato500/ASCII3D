@@ -7,33 +7,47 @@ int keyProcess(KEY_EVENT_RECORD key) {
     if (key.bKeyDown) {
         switch(key.wVirtualKeyCode) {
             case VK_LEFT:
-                jugador.angle += 0.1;
+                jugador.roll = 1;
             break;
 
             case VK_RIGHT:
-                jugador.angle -= 0.1;
+                jugador.roll = -1;
             break;
 
             case VK_UP:
-                jugador.xPos += 0.1*cos(jugador.angle);
-                jugador.yPos += 0.1*sin(jugador.angle);
-                if ((jugador.xPos >= 13.5) || (jugador.yPos >= 13.5) || (jugador.xPos <= 1.5) || (jugador.yPos <= 1.5)){
-                    jugador.xPos -= 0.1*cos(jugador.angle);
-                    jugador.yPos -= 0.1*sin(jugador.angle);
-                }
+                jugador.advance = 1;
             break;
 
             case VK_DOWN:
-                jugador.xPos -= 0.1*cos(jugador.angle);
-                jugador.yPos -= 0.1*sin(jugador.angle);
-                if ((jugador.xPos >= 13.5) || (jugador.yPos >= 13.5) || (jugador.xPos <= 1.5) || (jugador.yPos <= 1.5)){
-                    jugador.xPos += 0.1*cos(jugador.angle);
-                    jugador.yPos += 0.1*sin(jugador.angle);
-                }
+                jugador.advance = -1;
             break;
 
             case VK_ESCAPE:
                 returnValue = 69;
+            break;
+        }
+    }
+
+    if (!key.bKeyDown) {
+        switch(key.wVirtualKeyCode) {
+            case VK_LEFT:
+                if (jugador.roll == 1)
+                    jugador.roll = 0;
+            break;
+
+            case VK_RIGHT:
+                if (jugador.roll == -1)
+                    jugador.roll = 0;
+            break;
+
+            case VK_UP:
+                if (jugador.advance == 1)
+                    jugador.advance = 0;
+            break;
+
+            case VK_DOWN:
+                if (jugador.advance == -1)
+                    jugador.advance = 0;
             break;
         }
     }

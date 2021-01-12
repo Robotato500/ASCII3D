@@ -30,4 +30,9 @@ class Player {
         int incX;
         int incY;
 
+        int advance;
+        int roll;
+
+        int playerMov();
+
 };

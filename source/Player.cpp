@@ -131,4 +131,37 @@ Player::prepareCollision(double angulo) {
 
 }
 
+Player::playerMov() {
+
+    switch(roll) {
+        case 1:
+            jugador.angle += 0.05;
+        break;
+
+        case -1:
+            jugador.angle -= 0.05;
+        break;
+    }
+
+    switch(advance) {
+        case 1:
+            jugador.xPos += 0.05*cos(jugador.angle);
+            jugador.yPos += 0.05*sin(jugador.angle);
+            if (mapa[roundYCoord(yPos + 1.25*sin(jugador.angle))][roundXCoord(xPos + 1.25*cos(jugador.angle))]){
+                jugador.xPos -= 0.05*cos(jugador.angle);
+                jugador.yPos -= 0.05*sin(jugador.angle);
+            }
+        break;
+
+        case -1:
+            jugador.xPos -= 0.05*cos(jugador.angle);
+            jugador.yPos -= 0.05*sin(jugador.angle);
+            if (mapa[roundYCoord(yPos - 1.25*sin(jugador.angle))][roundXCoord(xPos - 1.25*cos(jugador.angle))]){
+                jugador.xPos += 0.05*cos(jugador.angle);
+                jugador.yPos += 0.05*sin(jugador.angle);
+            }
+        break;
+    }
+}
+
 //http://www.permadi.com/tutorial/raycast/rayc9.html
