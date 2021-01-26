@@ -46,7 +46,7 @@ Player::checkLoop(double rayAngle) {
             if (colision != 0) {
                 distance = distanceX;
                 distance = (colXX - xPos)*cos(jugador.angle) + (colXY - yPos)*sin(jugador.angle);
-                texturePosition = 0.4;//colXX - incX*(int)colXX;
+                texturePosition = colXX - incX*(int)colXX;
                 break;
             }
 
@@ -67,7 +67,7 @@ Player::checkLoop(double rayAngle) {
             if (colision != 0) {
                 distance = distanceY;
                 distance = (colYX - xPos)*cos(jugador.angle) + (colYY - yPos)*sin(jugador.angle);
-                texturePosition = 0.7;//colYY - incY*(int)colYY;
+                texturePosition = colYY - incY*(int)colYY;
                 break;
             }
 

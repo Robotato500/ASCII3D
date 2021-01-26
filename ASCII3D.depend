@@ -8,7 +8,7 @@
 	<windows.h>
 	"../headers/console.h"
 
-1604579808 c:\users\usuario\manu\projects\ascii3d\headers\console.h
+1611659381 c:\users\usuario\manu\projects\ascii3d\headers\console.h
 	<ctime>
 	<windows.h>
 
@@ -87,7 +87,7 @@
 
 1602453983 c:\programming\projects\ascii3d\headers\input.h
 
-1608032477 source:c:\users\usuario\manu\projects\ascii3d\source\console.cpp
+1611659381 source:c:\users\usuario\manu\projects\ascii3d\source\console.cpp
 	<windows.h>
 	<stdio.h>
 	<stdlib.h>
@@ -97,7 +97,7 @@
 	"../headers/Console.h"
 	"../headers/global.h"
 
-1606998398 c:\users\usuario\manu\projects\ascii3d\headers\global.h
+1611659381 c:\users\usuario\manu\projects\ascii3d\headers\global.h
 	<chrono>
 	<iostream>
 	<filesystem>
@@ -105,13 +105,13 @@
 	"Image.h"
 	"Player.h"
 
-1610451059 source:c:\users\usuario\manu\projects\ascii3d\source\global.cpp
+1611661465 source:c:\users\usuario\manu\projects\ascii3d\source\global.cpp
 	<chrono>
 	"../headers/global.h"
 	"../headers/Console.h"
 	"../headers/Player.h"
 
-1606121055 source:c:\users\usuario\manu\projects\ascii3d\source\image.cpp
+1611659381 source:c:\users\usuario\manu\projects\ascii3d\source\image.cpp
 	<stdio.h>
 	<stdlib.h>
 	<iostream>
@@ -119,14 +119,14 @@
 	<math.h>
 	"../headers/Image.h"
 
-1606121030 c:\users\usuario\manu\projects\ascii3d\headers\image.h
+1611659381 c:\users\usuario\manu\projects\ascii3d\headers\image.h
 
-1610450906 source:c:\users\usuario\manu\projects\ascii3d\source\input.cpp
+1611659381 source:c:\users\usuario\manu\projects\ascii3d\source\input.cpp
 	"../headers/Console.h"
 	"../headers/global.h"
 	<math.h>
 
-1610450668 source:c:\users\usuario\manu\projects\ascii3d\source\main.cpp
+1611661465 source:c:\users\usuario\manu\projects\ascii3d\source\main.cpp
 	<windows.h>
 	<stdio.h>
 	<stdlib.h>
@@ -141,15 +141,15 @@
 	"../headers/Image.h"
 	"../headers/Player.h"
 
-1603184201 c:\users\usuario\manu\projects\ascii3d\headers\input.h
+1611659381 c:\users\usuario\manu\projects\ascii3d\headers\input.h
 
-1610450825 source:c:\users\usuario\manu\projects\ascii3d\source\player.cpp
+1611659381 source:c:\users\usuario\manu\projects\ascii3d\source\player.cpp
 	<math.h>
 	<cstdlib>
 	"../headers/global.h"
 	"../headers/Player.h"
 
-1610450587 c:\users\usuario\manu\projects\ascii3d\headers\player.h
+1611659381 c:\users\usuario\manu\projects\ascii3d\headers\player.h
 
 1606218798 source:c:\dev\projects\c(++)\ascii3d\source\console.cpp
 	<windows.h>

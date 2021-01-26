@@ -11,7 +11,7 @@
 #define TIC
 
 #ifdef TIC
-#define FARYPATH "C:/Users/Usuario/Manu/Projects/ASCII3D/texture1.bmp"
+#define FARYPATH "C:/Users/Usuario/Manu/Projects/ASCII3D/texture4.bmp"
 #endif // TIC
 
 #ifndef TIC
