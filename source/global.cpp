@@ -4,14 +4,14 @@
 #include "../headers/Player.h"
 
 #define SCREEN_WIDTH 256
-#define SCREEN_HEIGHT 256
+#define SCREEN_HEIGHT 128
 #define FONT_WIDTH 2
 #define FONT_HEIGHT 2
 
 #define TIC
 
 #ifdef TIC
-#define FARYPATH "C:/Users/Usuario/Manu/Projects/ASCII3D/texture4.bmp"
+#define FARYPATH "C:/Users/Usuario/Manu/Projects/ASCII3D/texture1.bmp"
 #endif // TIC
 
 #ifndef TIC

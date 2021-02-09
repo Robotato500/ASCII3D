@@ -22,7 +22,7 @@ class Console {
     int drawString(char *text, int aSize, int xPos, int yPos, bool specify = false, short int attribute = 0);
     int refreshCursor();
     int drawPixel(int xPos, int yPos, int attribute, int intestity = 4);
-    int drawLine(int lSize, int texIndex, int lPos, float texPos);
+    int drawLine(float lSize, int texIndex, int lPos, float texPos);
 
 
     int sWidth;

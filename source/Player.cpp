@@ -46,7 +46,7 @@ Player::checkLoop(double rayAngle) {
             if (colision != 0) {
                 distance = distanceX;
                 distance = (colXX - xPos)*cos(jugador.angle) + (colXY - yPos)*sin(jugador.angle);
-                texturePosition = colXX - incX*(int)colXX;
+                texturePosition = colXX - (int)colXX;
                 break;
             }
 
@@ -67,7 +67,7 @@ Player::checkLoop(double rayAngle) {
             if (colision != 0) {
                 distance = distanceY;
                 distance = (colYX - xPos)*cos(jugador.angle) + (colYY - yPos)*sin(jugador.angle);
-                texturePosition = colYY - incY*(int)colYY;
+                texturePosition = colYY - (int)colYY;
                 break;
             }
 
@@ -85,9 +85,9 @@ Player::checkLoop(double rayAngle) {
 Player::rayCast(){
     double angleRay = angle + pi/8;
     console.clearScreen();
-    for (int column = 0; column < console.sWidth; column++) {
+    for (int column = 0; column < SCREEN_WIDTH; column++) {
 
-        angleRay -= (pi/4)/console.sWidth;
+        angleRay -= (pi/4)/SCREEN_WIDTH;
 
         if (angleRay >= 2*pi)
             angleRay -= 2*pi;
@@ -106,7 +106,7 @@ Player::rayCast(){
 
         int texture = checkLoop(angleRay);
 
-        console.drawLine(300/distance, texture, column, texturePosition);
+        console.drawLine((console.sHeight)/(distance), texture, column, texturePosition);
 
     }
     return 0;
@@ -147,19 +147,11 @@ Player::playerMov() {
         case 1:
             jugador.xPos += 0.05*cos(jugador.angle);
             jugador.yPos += 0.05*sin(jugador.angle);
-            if (mapa[roundYCoord(yPos + 1.25*sin(jugador.angle))][roundXCoord(xPos + 1.25*cos(jugador.angle))]){
-                jugador.xPos -= 0.05*cos(jugador.angle);
-                jugador.yPos -= 0.05*sin(jugador.angle);
-            }
         break;
 
         case -1:
             jugador.xPos -= 0.05*cos(jugador.angle);
             jugador.yPos -= 0.05*sin(jugador.angle);
-            if (mapa[roundYCoord(yPos - 1.25*sin(jugador.angle))][roundXCoord(xPos - 1.25*cos(jugador.angle))]){
-                jugador.xPos += 0.05*cos(jugador.angle);
-                jugador.yPos += 0.05*sin(jugador.angle);
-            }
         break;
     }
 }
