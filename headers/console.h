@@ -11,7 +11,7 @@ class Console {
     SMALL_RECT windowSize;
     COORD bufferSize;
 
-    Console(int width, int height, int font_width, int font_height, bool cursorOn);
+    Console(int width, int height, int font_width, int font_height, bool cursorOn, int hudHeight);
     ~Console();
 
     int refresh();
@@ -31,6 +31,8 @@ class Console {
     int fHeight;
     int fpsIndex;
     float fps[50];
+    int dWidth;
+    int dHeight;
 
     CHAR_INFO *buffer;
 

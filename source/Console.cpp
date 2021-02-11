@@ -8,7 +8,7 @@
 #include "../headers/global.h"
 
 
-Console::Console(int width, int height, int font_width, int font_height, bool cursorOn) {
+Console::Console(int width, int height, int font_width, int font_height, bool cursorOn, int hudHeight) {
 
     buffer = new CHAR_INFO[width*height];
 
@@ -50,6 +50,8 @@ Console::Console(int width, int height, int font_width, int font_height, bool cu
     fHeight = font_height;
     sWidth = width;
     sHeight = height;
+    dWidth = width;
+    dHeight = height - hudHeight;
 
     fpsIndex = 0;
 
@@ -85,16 +87,16 @@ Console::random() {
 }
 
 Console::clearScreen(int attribute) {
-    for (int y = 0; y<sHeight/2; y++) {
-        for (int x = 0; x<sWidth; x++) {
-            buffer[x + y*sWidth].Char.AsciiChar = (unsigned char)219;
-            buffer[x + y*sWidth].Attributes = 11;
+    for (int y = 0; y<(float)dHeight/2; y++) {
+        for (int x = 0; x<dWidth; x++) {
+            buffer[x + y*dWidth].Char.AsciiChar = (unsigned char)219;
+            buffer[x + y*dWidth].Attributes = 11;
         }
     }
-    for (int y = sHeight/2; y<sHeight; y++) {
-        for (int x = 0; x<sWidth; x++) {
-            buffer[x + y*sWidth].Char.AsciiChar = (unsigned char)219;
-            buffer[x + y*sWidth].Attributes = 8;
+    for (int y = (int)((float)dHeight/2); y<dHeight; y++) {
+        for (int x = 0; x<dWidth; x++) {
+            buffer[x + y*dWidth].Char.AsciiChar = (unsigned char)219;
+            buffer[x + y*dWidth].Attributes = 8;
         }
     }
     return 0;
@@ -126,10 +128,10 @@ Console::drawLine(float lSize, int texIndex, int lPos, float texPos) {
 
     float texBufIndex = textureFary.iWidth*texPos;
     float consoleBufIndex;
-    if (lSize > console.sHeight)
-        lSize = console.sHeight;
+    if (lSize > console.dHeight)
+        lSize = console.dHeight;
     for (int k = 0; k < lSize; k++) {
-        consoleBufIndex = lPos +(int)((float)console.sHeight/2 - lSize/2 + k)*console.sWidth;
+        consoleBufIndex = lPos +(int)((float)console.dHeight/2 - lSize/2 + k)*console.dWidth;
         buffer[(int)consoleBufIndex].Attributes = textureFary.findPixel((int)texBufIndex, (int)(k*(float)textureFary.iHeight/(float)lSize));
     }
     return 0;
