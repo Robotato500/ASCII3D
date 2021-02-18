@@ -79,50 +79,46 @@ Player::checkLoop(double rayAngle) {        //bucle de hacer avanzar el rayo y c
 
 Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3d
 
-    double angleRay = angle + (pi/8)*(console.dWidth/console.dHeight);
-    console.clearScreen();
-    for (int column = 0; column < console.dWidth; column++) {
+    double angleRay = angle + (pi/8)*(console.dWidth/console.dHeight);  //el angulo inicial es el actual + el aspect ratio*22.5º (porque el fov para 1:1 es de 45º)
+    console.clearScreen();  //borra la pantala (y añade el cielo y el suelo)
+    for (int column = 0; column < console.dWidth; column++) {       //bucle que tira un rayo por columna
 
-        angleRay -= (pi/4)/console.dHeight;
+        angleRay -= (pi/4)/console.dHeight;     //el siguiente angulo es desplazarlo a clockwise el fov total (45º*W/H) partido por W (ya que tira W rayos en total)
 
-        if (angleRay >= 2*pi)
+        if (angleRay >= 2*pi)       //para que se quede entre 0 y 2pi
             angleRay -= 2*pi;
         else if (angleRay < 0)
             angleRay += 2*pi;
 
+        prepareCollision(angleRay); //preparo las posiciones iniciales del rayo
 
-        colXX = xPos; colXY = yPos;
-        colYX = xPos; colYY = yPos;
-
-        prepareCollision(angleRay);
-        distanceY = (colYX - xPos)*(colYX - xPos) + (colYY - yPos)*(colYY - yPos);
+        distanceY = (colYX - xPos)*(colYX - xPos) + (colYY - yPos)*(colYY - yPos);//distancias iniciales
         distanceX = (colXX - xPos)*(colXX - xPos) + (colXY - yPos)*(colXY - yPos);
 
 
+        int texture = checkLoop(angleRay);  //y chequeo las colisiones de este rayo
 
-        int texture = checkLoop(angleRay);
-
-        console.drawLine((console.dHeight)/(distance), texture, column, texturePosition);
+        console.drawLine((console.dHeight)/(distance), texture, column, texturePosition);   //y dibujo la columna de este rayo
 
     }
     return 0;
 }
 
-Player::prepareCollision(double angulo) {
-    if ((0 <= angulo) && (angulo < pi/2)) {incY = 1; incX = 1;}
+Player::prepareCollision(double angulo) {   //prepara los incrementos y la primera posicion de las colisiones
+    if ((0 <= angulo) && (angulo < pi/2)) {incY = 1; incX = 1;} //los signos de avanzar segun el cuadrante
     else if ((pi/2 <= angulo) && (angulo < pi)) {incY = 1; incX = -1;}
     else if ((pi <= angulo) && (angulo < 3*pi/2)) {incY = -1; incX = -1;}
     else {incY = -1; incX = 1;}
 
-    colYX = (int)xPos + incX;               //y esta
+    colYX = (int)xPos + incX;               //dependiendo del caudrante del angulo elijo un puto u otro del cuadrado que rodea a la posicion del jugador como posicion inicial de las colisiones
     if (incX == -1) {colYX += 1;}
 
-    colYY = yPos + abs((colYX - xPos)*tan(angulo))*incY; //esta formula esta chequeada
+    colYY = yPos + abs((colYX - xPos)*tan(angulo))*incY;
 
-    colXY = (int)yPos + incY;           //esta parte estoy basttante seguro de que esta bien
+    colXY = (int)yPos + incY;
     if (incY == -1) {colXY += 1;}
 
-    colXX = xPos + abs((colXY - yPos)/tan(angulo))*incX; //y esta
+    colXX = xPos + abs((colXY - yPos)/tan(angulo))*incX;
     return 0;
 
 }
@@ -131,25 +127,30 @@ Player::playerMov() {
 
     switch(roll) {
         case 1:
-            jugador.angle += 0.05;
+            angle += 0.05;
         break;
 
         case -1:
-            jugador.angle -= 0.05;
+            angle -= 0.05;
         break;
     }
 
     switch(advance) {
         case 1:
-            jugador.xPos += 0.05*cos(jugador.angle);
-            jugador.yPos += 0.05*sin(jugador.angle);
+            xPos += 0.05*cos(jugador.angle);
+            if (mapa[(int)yPos][(int)(xPos+cos(jugador.angle))])
+                xPos -= 0.05*cos(jugador.angle);
+            yPos += 0.05*sin(jugador.angle);
+            if (mapa[(int)(yPos+sin(jugador.angle))][(int)xPos])
+                yPos -= 0.05*sin(jugador.angle);
         break;
 
         case -1:
-            jugador.xPos -= 0.05*cos(jugador.angle);
-            jugador.yPos -= 0.05*sin(jugador.angle);
+            xPos -= 0.05*cos(jugador.angle);
+            yPos -= 0.05*sin(jugador.angle);
         break;
     }
 }
+
 
 //http://www.permadi.com/tutorial/raycast/rayc9.html

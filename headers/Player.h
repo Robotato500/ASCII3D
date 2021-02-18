@@ -35,4 +35,6 @@ class Player {
 
         int playerMov();
 
+        int wallCollision();
+
 };
