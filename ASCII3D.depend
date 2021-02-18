@@ -105,7 +105,7 @@
 	"Image.h"
 	"Player.h"
 
-1613047247 source:c:\users\usuario\manu\projects\ascii3d\source\global.cpp
+1613047872 source:c:\users\usuario\manu\projects\ascii3d\source\global.cpp
 	<chrono>
 	"../headers/global.h"
 	"../headers/Console.h"
