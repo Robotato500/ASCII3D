@@ -41,7 +41,7 @@ Player::checkLoop(double rayAngle) {        //bucle de hacer avanzar el rayo y c
             colision = mapa[roundYCoord(colXY)][(int)colXX];    //comprueba el mapa, redondeando como tiene que ser, si en el punto de colision actual hay bloque
 
             if (colision != 0) {        //si hay colision
-                distance = (colXX - xPos)*cos(jugador.angle) + (colXY - yPos)*sin(jugador.angle);   //calculo la distancia proyectada que usa la funcion de dibujar
+                distance = (colXX - xPos + 1)*cos(jugador.angle) + (colXY - yPos + 1)*sin(jugador.angle);   //calculo la distancia proyectada que usa la funcion de dibujar
                 texturePosition = colXX - (int)colXX;   //y en que parte del bloque me he chocado para saber que columna de pixeles de la textura asignar
                 break;  //se sale del bucle
             }
@@ -60,8 +60,7 @@ Player::checkLoop(double rayAngle) {        //bucle de hacer avanzar el rayo y c
             colision = mapa[(int)colYY][roundXCoord(colYX)];
 
             if (colision != 0) {
-                distance = distanceY;
-                distance = (colYX - xPos)*cos(jugador.angle) + (colYY - yPos)*sin(jugador.angle);
+                distance = (colYX - xPos + 1)*cos(jugador.angle) + (colYY - yPos + 1)*sin(jugador.angle);
                 texturePosition = colYY - (int)colYY;
                 break;
             }
@@ -138,10 +137,10 @@ Player::playerMov() {
     switch(advance) {
         case 1:
             xPos += 0.05*cos(jugador.angle);
-            if (mapa[(int)yPos][(int)(xPos+cos(jugador.angle))])
+            if ((mapa[(int)yPos][(int)xPos]) || (mapa[(int)yPos][(int)xPos]))
                 xPos -= 0.05*cos(jugador.angle);
             yPos += 0.05*sin(jugador.angle);
-            if (mapa[(int)(yPos+sin(jugador.angle))][(int)xPos])
+            if ((mapa[(int)yPos][(int)xPos]) || (mapa[(int)yPos][(int)xPos]))
                 yPos -= 0.05*sin(jugador.angle);
         break;
 
