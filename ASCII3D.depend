@@ -143,13 +143,13 @@
 
 1611659381 c:\users\usuario\manu\projects\ascii3d\headers\input.h
 
-1614859828 source:c:\users\usuario\manu\projects\ascii3d\source\player.cpp
+1615464682 source:c:\users\usuario\manu\projects\ascii3d\source\player.cpp
 	<math.h>
 	<cstdlib>
 	"../headers/global.h"
 	"../headers/Player.h"
 
-1613651817 c:\users\usuario\manu\projects\ascii3d\headers\player.h
+1615193446 c:\users\usuario\manu\projects\ascii3d\headers\player.h
 
 1606218798 source:c:\dev\projects\c(++)\ascii3d\source\console.cpp
 	<windows.h>

@@ -41,7 +41,7 @@ Player::checkLoop(double rayAngle) {        //bucle de hacer avanzar el rayo y c
             colision = mapa[roundYCoord(colXY)][(int)colXX];    //comprueba el mapa, redondeando como tiene que ser, si en el punto de colision actual hay bloque
 
             if (colision != 0) {        //si hay colision
-                distance = (colXX - xPos + 1)*cos(jugador.angle) + (colXY - yPos + 1)*sin(jugador.angle);   //calculo la distancia proyectada que usa la funcion de dibujar
+                distance = (colXX - xPos)*cos(jugador.angle) + (colXY - yPos)*sin(jugador.angle);   //calculo la distancia proyectada que usa la funcion de dibujar
                 texturePosition = colXX - (int)colXX;   //y en que parte del bloque me he chocado para saber que columna de pixeles de la textura asignar
                 break;  //se sale del bucle
             }
@@ -60,7 +60,7 @@ Player::checkLoop(double rayAngle) {        //bucle de hacer avanzar el rayo y c
             colision = mapa[(int)colYY][roundXCoord(colYX)];
 
             if (colision != 0) {
-                distance = (colYX - xPos + 1)*cos(jugador.angle) + (colYY - yPos + 1)*sin(jugador.angle);
+                distance = (colYX - xPos)*cos(jugador.angle) + (colYY - yPos)*sin(jugador.angle);
                 texturePosition = colYY - (int)colYY;
                 break;
             }
@@ -137,10 +137,10 @@ Player::playerMov() {
     switch(advance) {
         case 1:
             xPos += 0.05*cos(jugador.angle);
-            if ((mapa[(int)yPos][(int)xPos]) || (mapa[(int)yPos][(int)xPos]))
+            if (wallCollision())
                 xPos -= 0.05*cos(jugador.angle);
             yPos += 0.05*sin(jugador.angle);
-            if ((mapa[(int)yPos][(int)xPos]) || (mapa[(int)yPos][(int)xPos]))
+            if (wallCollision())
                 yPos -= 0.05*sin(jugador.angle);
         break;
 
@@ -149,6 +149,51 @@ Player::playerMov() {
             yPos -= 0.05*sin(jugador.angle);
         break;
     }
+}
+
+bool Player::wallCollision() {
+
+    if (mapa[(int)(yPos - 0.5)][(int)xPos]){
+        //if (abs((int)yPos - yPos) < 0.5)
+            return 1;
+    }
+
+    if (mapa[(int)(yPos + 0.5)][(int)xPos]){
+        //if (abs(1 - (int)yPos + yPos) < 0.5)
+            return 1;
+    }
+
+    if (mapa[(int)yPos][(int)(xPos - 0.5)]){
+        //if (abs((int)xPos - xPos) < 0.5)
+            return 1;
+    }
+
+    if (mapa[(int)yPos][(int)(xPos + 0.5)]){
+        //if (abs(1 - (int)xPos + xPos) < 0.5)
+            return 1;
+    }
+
+    /*if (mapa[(int)yPos - 1][(int)xPos - 1]) {
+        //if (((int)yPos - yPos)*((int)yPos - yPos) + ((int)xPos - xPos)*((int)xPos - xPos) < 4)
+            return 1;
+    }
+
+    if (mapa[(int)yPos + 1][(int)xPos - 1]) {
+        //if ((1 - (int)yPos + yPos)*(1 - (int)yPos + yPos) + ((int)xPos - xPos)*((int)xPos - xPos) < 4)
+            return 1;
+    }
+
+    if (mapa[(int)yPos - 1][(int)xPos + 1]) {
+        //if (((int)yPos - yPos)*((int)yPos - yPos) + (1 - (int)xPos + xPos)*(1 - (int)xPos + xPos) < 4)
+            return 1;
+    }
+
+    if (mapa[(int)yPos + 1][(int)xPos + 1]) {
+        //if ((1 - (int)yPos + yPos)*(1 - (int)yPos + yPos) + (1 - (int)xPos + xPos)*(1 - (int)xPos + xPos) < 4)
+            return 1;
+    }*/
+
+    return 0;
 }
 
 
