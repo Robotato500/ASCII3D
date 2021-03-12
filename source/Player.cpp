@@ -7,6 +7,8 @@ Player::Player() {      //al crear un player lo importante es la poicion y el an
     xPos = 8;
     angle = 0;
     yPos = 8;
+    fov = (pi/6)*(console.dWidth/console.dHeight);
+    dpp = (int)(((float)console.dWidth/2)/tan(fov));
 }
 
 int Player::roundXCoord(float xCoord) {     //funcion para redondear de forma correcta para las colisiones
@@ -78,11 +80,11 @@ Player::checkLoop(double rayAngle) {        //bucle de hacer avanzar el rayo y c
 
 Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3d
 
-    double angleRay = angle + (pi/8)*(console.dWidth/console.dHeight);  //el angulo inicial es el actual + el aspect ratio*22.5º (porque el fov para 1:1 es de 45º)
+    double angleRay;
     console.clearScreen();  //borra la pantala (y añade el cielo y el suelo)
     for (int column = 0; column < console.dWidth; column++) {       //bucle que tira un rayo por columna
 
-        angleRay -= (pi/4)/console.dHeight;     //el siguiente angulo es desplazarlo a clockwise el fov total (45º*W/H) partido por W (ya que tira W rayos en total)
+        angleRay = atan(((-(float)console.dWidth + 1)/(2) + (float)column)/(float)dpp) + angle;
 
         if (angleRay >= 2*pi)       //para que se quede entre 0 y 2pi
             angleRay -= 2*pi;

@@ -11,6 +11,10 @@ class Player {
         int roundXCoord(float xCoord);
         int roundYCoord(float yCoord);
 
+        int dpp;
+
+        float fov;
+
         double angle;
 
         float xPos;
