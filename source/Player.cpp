@@ -81,6 +81,8 @@ Player::checkLoop(double rayAngle) {        //bucle de hacer avanzar el rayo y c
 Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3d
 
     double angleRay;
+
+
     console.clearScreen();  //borra la pantala (y añade el cielo y el suelo)
     for (int column = 0; column < console.dWidth; column++) {       //bucle que tira un rayo por columna
 
@@ -97,11 +99,32 @@ Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3
         distanceX = (colXX - xPos)*(colXX - xPos) + (colXY - yPos)*(colXY - yPos);
 
 
-        int texture = checkLoop(angleRay);  //y chequeo las colisiones de este rayo
+        texturePerRay1[column] = checkLoop(angleRay);  //y chequeo las colisiones de este rayo
 
-        console.drawLine((console.dHeight)/(distance), texture, column, texturePosition);   //y dibujo la columna de este rayo
+        if (distance > console.dHeight) {
+            switch(advance) {
+                case 1:
+                    xPos -= 0.05*cos(jugador.angle);
+                    yPos -= 0.05*sin(jugador.angle);
+                break;
+
+                case -1:
+                    xPos += 0.05*cos(jugador.angle);
+                    yPos += 0.05*sin(jugador.angle);
+                break;
+            }
+
+            return 0;
+        }
+
+        distancePerRay1[column] = distance;
+        texturePosPerRay1[column] = texturePosition;
 
     }
+    distancePerRay2 = distancePerRay1;
+    texturePosPerRay2 = texturePosPerRay1;
+    texturePerRay2 = texturePerRay1;
+
     return 0;
 }
 
@@ -139,11 +162,7 @@ Player::playerMov() {
     switch(advance) {
         case 1:
             xPos += 0.05*cos(jugador.angle);
-            if (wallCollision())
-                xPos -= 0.05*cos(jugador.angle);
             yPos += 0.05*sin(jugador.angle);
-            if (wallCollision())
-                yPos -= 0.05*sin(jugador.angle);
         break;
 
         case -1:

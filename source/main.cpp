@@ -26,6 +26,7 @@ int main() {
 
     while (true) {
         jugador.rayCast();
+        console.drawWalls();
         console.refresh();
         if (processInputs() == 69)
             return 0;

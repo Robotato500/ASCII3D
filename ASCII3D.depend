@@ -8,7 +8,7 @@
 	<windows.h>
 	"../headers/console.h"
 
-1613047765 c:\users\usuario\manu\projects\ascii3d\headers\console.h
+1616071982 c:\users\usuario\manu\projects\ascii3d\headers\console.h
 	<ctime>
 	<windows.h>
 
@@ -87,7 +87,7 @@
 
 1602453983 c:\programming\projects\ascii3d\headers\input.h
 
-1613047607 source:c:\users\usuario\manu\projects\ascii3d\source\console.cpp
+1616070435 source:c:\users\usuario\manu\projects\ascii3d\source\console.cpp
 	<windows.h>
 	<stdio.h>
 	<stdlib.h>
@@ -143,13 +143,14 @@
 
 1611659381 c:\users\usuario\manu\projects\ascii3d\headers\input.h
 
-1615464682 source:c:\users\usuario\manu\projects\ascii3d\source\player.cpp
+1615798667 source:c:\users\usuario\manu\projects\ascii3d\source\player.cpp
 	<math.h>
 	<cstdlib>
 	"../headers/global.h"
 	"../headers/Player.h"
 
-1615547943 c:\users\usuario\manu\projects\ascii3d\headers\player.h
+1616072013 c:\users\usuario\manu\projects\ascii3d\headers\player.h
+	"global.h"
 
 1606218798 source:c:\dev\projects\c(++)\ascii3d\source\console.cpp
 	<windows.h>

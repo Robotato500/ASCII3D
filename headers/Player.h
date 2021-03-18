@@ -1,4 +1,5 @@
 #pragma once
+#include "global.h"
 
 
 class Player {
@@ -40,5 +41,12 @@ class Player {
         int playerMov();
 
         bool wallCollision();
+
+        float lSizePerRay1[console.dWidth];
+        float lSizePerRay2[console.dWidth];
+        char texturePerRay1[console.dWidth];
+        char texturePerRay2[console.dWidth];
+        float texturePosPerRay1[console.dWidth];
+        float texturePosPerRay2[console.dWidth];
 
 };

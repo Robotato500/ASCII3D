@@ -23,6 +23,7 @@ class Console {
     int refreshCursor();
     int drawPixel(int xPos, int yPos, int attribute, int intestity = 4);
     int drawLine(float lSize, int texIndex, int lPos, float texPos);
+    int drawWalls();
 
 
     int sWidth;
