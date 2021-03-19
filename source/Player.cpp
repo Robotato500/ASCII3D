@@ -9,6 +9,14 @@ Player::Player() {      //al crear un player lo importante es la poicion y el an
     yPos = 8;
     fov = (pi/6)*(console.dWidth/console.dHeight);
     dpp = (int)(((float)console.dWidth/2)/tan(fov));
+    float a[console.dWidth];
+    int b[console.dWidth];
+    distancePerRay1 = a;
+    distancePerRay2 = a;
+    texturePosPerRay1 = a;
+    texturePosPerRay2 = a;
+    texturePerRay1 = b;
+    texturePerRay2 = b;
 }
 
 int Player::roundXCoord(float xCoord) {     //funcion para redondear de forma correcta para las colisiones
@@ -82,6 +90,8 @@ Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3
 
     double angleRay;
 
+    int texture = 0;
+
 
     console.clearScreen();  //borra la pantala (y añade el cielo y el suelo)
     for (int column = 0; column < console.dWidth; column++) {       //bucle que tira un rayo por columna
@@ -99,9 +109,10 @@ Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3
         distanceX = (colXX - xPos)*(colXX - xPos) + (colXY - yPos)*(colXY - yPos);
 
 
-        texturePerRay1[column] = checkLoop(angleRay);  //y chequeo las colisiones de este rayo
+        texture = checkLoop(angleRay);  //y chequeo las colisiones de este rayo
+        //texturePerRay1[column] = texture;
 
-        if (distance > console.dHeight) {
+        /*if (dpp/distance > console.dHeight) {
             switch(advance) {
                 case 1:
                     xPos -= 0.05*cos(jugador.angle);
@@ -115,15 +126,16 @@ Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3
             }
 
             return 0;
-        }
+        }*/
 
-        distancePerRay1[column] = distance;
-        texturePosPerRay1[column] = texturePosition;
+        //distancePerRay1[column] = distance;
+        //texturePosPerRay1[column] = texturePosition;
+        console.drawLine(dpp/distance, texture, column, texturePosition);
 
     }
-    distancePerRay2 = distancePerRay1;
-    texturePosPerRay2 = texturePosPerRay1;
-    texturePerRay2 = texturePerRay1;
+    //distancePerRay2 = distancePerRay1;
+    //texturePosPerRay2 = texturePosPerRay1;
+    //texturePerRay2 = texturePerRay1;
 
     return 0;
 }

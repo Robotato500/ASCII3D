@@ -125,8 +125,8 @@ Console::drawPixel(int xPos, int yPos, int attribute, int intensity) {
 }
 
 Console::drawWalls() {
-    for (column = 0; column < dWidth; column++) {
-        drawLine((dHeight)/(jugador.distancePerRay2[column]), jugador.texturePerRay2[column], column, jugador.texturePosPerRay2[column]);
+    for (int column = 0; column < dWidth; column++) {
+        drawLine(dHeight/(jugador.distancePerRay2[column]), jugador.texturePerRay2[column], column, jugador.texturePosPerRay2[column]);
     }
 }
 
@@ -134,11 +134,12 @@ Console::drawLine(float lSize, int texIndex, int lPos, float texPos) {
 
     float texBufIndex = textureFary.iWidth*texPos;
     float consoleBufIndex;
-    if (lSize > console.dHeight)
-        lSize = console.dHeight;
+    //if (lSize > console.dHeight)
+        //lSize = console.dHeight;
     for (int k = 0; k < lSize; k++) {
-        consoleBufIndex = lPos +(int)((float)console.dHeight/2 - lSize/2 + k)*console.dWidth;
-        buffer[(int)consoleBufIndex].Attributes = 9;//textureFary.findPixel((int)texBufIndex, (int)(k*(float)textureFary.iHeight/(float)lSize));
+        consoleBufIndex = lPos +(int)((float)dHeight/2 - lSize/2 + k)*dWidth;
+        if ((consoleBufIndex >= 0) && (consoleBufIndex < sWidth*sHeight))
+            buffer[(int)consoleBufIndex].Attributes = textureFary.findPixel((int)texBufIndex, (int)(k*(float)textureFary.iHeight/(float)lSize));
     }
     return 0;
 }

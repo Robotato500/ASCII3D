@@ -42,11 +42,11 @@ class Player {
 
         bool wallCollision();
 
-        float lSizePerRay1[console.dWidth];
-        float lSizePerRay2[console.dWidth];
-        char texturePerRay1[console.dWidth];
-        char texturePerRay2[console.dWidth];
-        float texturePosPerRay1[console.dWidth];
-        float texturePosPerRay2[console.dWidth];
+        float *distancePerRay1;
+        float *distancePerRay2;
+        int *texturePerRay1;
+        int *texturePerRay2;
+        float *texturePosPerRay1;
+        float *texturePosPerRay2;
 
 };
