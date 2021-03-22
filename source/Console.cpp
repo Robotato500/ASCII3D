@@ -140,6 +140,7 @@ Console::drawLine(float lSize, int texIndex, int lPos, float texPos) {
         consoleBufIndex = lPos +(int)((float)dHeight/2 - lSize/2 + k)*dWidth;
         if ((consoleBufIndex >= 0) && (consoleBufIndex < sWidth*sHeight))
             buffer[(int)consoleBufIndex].Attributes = textureFary.findPixel((int)texBufIndex, (int)(k*(float)textureFary.iHeight/(float)lSize));
+
     }
     return 0;
 }

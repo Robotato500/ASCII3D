@@ -9,14 +9,14 @@ Player::Player() {      //al crear un player lo importante es la poicion y el an
     yPos = 8;
     fov = (pi/6)*(console.dWidth/console.dHeight);
     dpp = (int)(((float)console.dWidth/2)/tan(fov));
-    float a[console.dWidth];
+    /*float a[console.dWidth];
     int b[console.dWidth];
     distancePerRay1 = a;
     distancePerRay2 = a;
     texturePosPerRay1 = a;
     texturePosPerRay2 = a;
     texturePerRay1 = b;
-    texturePerRay2 = b;
+    texturePerRay2 = b;*/
 }
 
 int Player::roundXCoord(float xCoord) {     //funcion para redondear de forma correcta para las colisiones
@@ -96,7 +96,7 @@ Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3
     console.clearScreen();  //borra la pantala (y añade el cielo y el suelo)
     for (int column = 0; column < console.dWidth; column++) {       //bucle que tira un rayo por columna
 
-        angleRay = atan(((-(float)console.dWidth + 1)/(2) + (float)column)/(float)dpp) + angle;
+        angleRay = -atan(((-(float)console.dWidth + 1)/(2) + (float)column)/(float)dpp) + angle;
 
         if (angleRay >= 2*pi)       //para que se quede entre 0 y 2pi
             angleRay -= 2*pi;
@@ -133,10 +133,6 @@ Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3
         console.drawLine(dpp/distance, texture, column, texturePosition);
 
     }
-    //distancePerRay2 = distancePerRay1;
-    //texturePosPerRay2 = texturePosPerRay1;
-    //texturePerRay2 = texturePerRay1;
-
     return 0;
 }
 
@@ -171,62 +167,30 @@ Player::playerMov() {
         break;
     }
 
+    if (angle >= 2*pi)       //para que se quede entre 0 y 2pi
+            angle -= 2*pi;
+        else if (angle < 0)
+            angle += 2*pi;
+
     switch(advance) {
         case 1:
             xPos += 0.05*cos(jugador.angle);
+            if (mapa[(int)yPos][(int)xPos])
+                xPos -= 0.05*cos(jugador.angle);
             yPos += 0.05*sin(jugador.angle);
+            if (mapa[(int)yPos][(int)xPos])
+                yPos -= 0.05*cos(jugador.angle);
         break;
 
         case -1:
             xPos -= 0.05*cos(jugador.angle);
+            if (mapa[(int)yPos][(int)xPos])
+                xPos += 0.05*cos(jugador.angle);
             yPos -= 0.05*sin(jugador.angle);
+            if (mapa[(int)yPos][(int)xPos])
+                yPos += 0.05*cos(jugador.angle);
         break;
     }
-}
-
-bool Player::wallCollision() {
-
-    if (mapa[(int)(yPos - 0.5)][(int)xPos]){
-        //if (abs((int)yPos - yPos) < 0.5)
-            return 1;
-    }
-
-    if (mapa[(int)(yPos + 0.5)][(int)xPos]){
-        //if (abs(1 - (int)yPos + yPos) < 0.5)
-            return 1;
-    }
-
-    if (mapa[(int)yPos][(int)(xPos - 0.5)]){
-        //if (abs((int)xPos - xPos) < 0.5)
-            return 1;
-    }
-
-    if (mapa[(int)yPos][(int)(xPos + 0.5)]){
-        //if (abs(1 - (int)xPos + xPos) < 0.5)
-            return 1;
-    }
-
-    /*if (mapa[(int)yPos - 1][(int)xPos - 1]) {
-        //if (((int)yPos - yPos)*((int)yPos - yPos) + ((int)xPos - xPos)*((int)xPos - xPos) < 4)
-            return 1;
-    }
-
-    if (mapa[(int)yPos + 1][(int)xPos - 1]) {
-        //if ((1 - (int)yPos + yPos)*(1 - (int)yPos + yPos) + ((int)xPos - xPos)*((int)xPos - xPos) < 4)
-            return 1;
-    }
-
-    if (mapa[(int)yPos - 1][(int)xPos + 1]) {
-        //if (((int)yPos - yPos)*((int)yPos - yPos) + (1 - (int)xPos + xPos)*(1 - (int)xPos + xPos) < 4)
-            return 1;
-    }
-
-    if (mapa[(int)yPos + 1][(int)xPos + 1]) {
-        //if ((1 - (int)yPos + yPos)*(1 - (int)yPos + yPos) + (1 - (int)xPos + xPos)*(1 - (int)xPos + xPos) < 4)
-            return 1;
-    }*/
-
-    return 0;
 }
 
 
