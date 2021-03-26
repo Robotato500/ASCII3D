@@ -37,6 +37,7 @@ class Player {
 
         int advance;
         int roll;
+        float speed;
 
         int playerMov();
 

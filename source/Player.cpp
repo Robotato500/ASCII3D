@@ -7,8 +7,9 @@ Player::Player() {      //al crear un player lo importante es la poicion y el an
     xPos = 8;
     angle = 0;
     yPos = 8;
-    fov = (pi/6)*(console.dWidth/console.dHeight);
-    dpp = (int)(((float)console.dWidth/2)/tan(fov));
+    fov = (pi/6);
+    dpp = (int)abs((((float)console.dWidth/2)/tan(fov)));
+    speed = 0.0000025;
     /*float a[console.dWidth];
     int b[console.dWidth];
     distancePerRay1 = a;
@@ -115,13 +116,13 @@ Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3
         /*if (dpp/distance > console.dHeight) {
             switch(advance) {
                 case 1:
-                    xPos -= 0.05*cos(jugador.angle);
-                    yPos -= 0.05*sin(jugador.angle);
+                    xPos -= speed*deltaTime*cos(jugador.angle);
+                    yPos -= speed*deltaTime*sin(jugador.angle);
                 break;
 
                 case -1:
-                    xPos += 0.05*cos(jugador.angle);
-                    yPos += 0.05*sin(jugador.angle);
+                    xPos += speed*deltaTime*cos(jugador.angle);
+                    yPos += speed*deltaTime*sin(jugador.angle);
                 break;
             }
 
@@ -130,7 +131,7 @@ Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3
 
         //distancePerRay1[column] = distance;
         //texturePosPerRay1[column] = texturePosition;
-        console.drawLine(dpp/distance, texture, column, texturePosition);
+        console.drawLine(dpp/distance, texture, column, texturePosition, distance/3);
 
     }
     return 0;
@@ -159,11 +160,11 @@ Player::playerMov() {
 
     switch(roll) {
         case 1:
-            angle += 0.05;
+            angle += speed*deltaTime;
         break;
 
         case -1:
-            angle -= 0.05;
+            angle -= speed*deltaTime;
         break;
     }
 
@@ -174,21 +175,23 @@ Player::playerMov() {
 
     switch(advance) {
         case 1:
-            xPos += 0.05*cos(jugador.angle);
+            xPos += speed*deltaTime*cos(jugador.angle);
             if (mapa[(int)yPos][(int)xPos])
-                xPos -= 0.05*cos(jugador.angle);
-            yPos += 0.05*sin(jugador.angle);
+                xPos -= speed*deltaTime*cos(jugador.angle);
+
+            yPos += speed*deltaTime*sin(jugador.angle);
             if (mapa[(int)yPos][(int)xPos])
-                yPos -= 0.05*cos(jugador.angle);
+                yPos -= speed*deltaTime*sin(jugador.angle);
         break;
 
         case -1:
-            xPos -= 0.05*cos(jugador.angle);
+            xPos -= speed*deltaTime*cos(jugador.angle);
             if (mapa[(int)yPos][(int)xPos])
-                xPos += 0.05*cos(jugador.angle);
-            yPos -= 0.05*sin(jugador.angle);
+                xPos += speed*deltaTime*cos(jugador.angle);
+
+            yPos -= speed*deltaTime*sin(jugador.angle);
             if (mapa[(int)yPos][(int)xPos])
-                yPos += 0.05*cos(jugador.angle);
+                yPos += speed*deltaTime*sin(jugador.angle);
         break;
     }
 }

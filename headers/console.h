@@ -21,8 +21,8 @@ class Console {
     int drawChar();
     int drawString(char *text, int aSize, int xPos, int yPos, bool specify = false, short int attribute = 0);
     int refreshCursor();
-    int drawPixel(int xPos, int yPos, int attribute, int intestity = 4);
-    int drawLine(float lSize, int texIndex, int lPos, float texPos);
+    int drawPixel(int xPos, int yPos, int attribute, int intestity = 0);
+    int drawLine(float lSize, int texIndex, int lPos, float texPos, float intensidad);
     int drawWalls();
 
 

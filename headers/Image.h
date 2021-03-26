@@ -4,7 +4,7 @@ class Image {
 
     public:
 
-        Image(const char* imagePath);
+        Image(const char* imagePath, int atlas);
         ~Image();
         unsigned char findPixel(int x, int y);
 
@@ -12,4 +12,5 @@ class Image {
         long bufferLen;
         int iHeight;
         int iWidth;
+        int tWidth;
 };

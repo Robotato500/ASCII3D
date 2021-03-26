@@ -7,7 +7,7 @@
 #include "../headers/Image.h"
 
 
-Image::Image(const char* filePath) {
+Image::Image(const char* filePath, int atlas) {
     unsigned char *fakeBuffer;
     long filelen;
     FILE *imagePtr;
@@ -22,6 +22,7 @@ Image::Image(const char* filePath) {
 
     iWidth = fakeBuffer[18] + fakeBuffer[19]*256 + (fakeBuffer[20])*256*256 + (fakeBuffer[21])*256*256*256; //por como es el formato bmp
     iHeight = fakeBuffer[22] + fakeBuffer[23]*256 + (fakeBuffer[24])*256*256 + (fakeBuffer[25])*256*256*256;
+    tWidth = iWidth/atlas;
 
     unsigned char cgaColors[][3] = { { 0, 0, 0 }, { 0, 0, 170 }, { 0, 170, 0 }, { 0, 170, 170 }, { 170, 0, 0 }, { 170, 0, 170 },
     { 170, 85, 0 }, { 170, 170, 170 }, { 85, 85, 85 }, { 85, 85, 255 }, { 85, 255, 85 }, { 85, 255, 255 },

@@ -7,9 +7,10 @@
 #include "Player.h"
 
 #define SCREEN_WIDTH 256
-#define SCREEN_HEIGHT 256
-#define FONT_WIDTH 2
-#define FONT_HEIGHT 2
+#define SCREEN_HEIGHT 144
+#define FONT_WIDTH 4
+#define FONT_HEIGHT 4
+#define HUD_HEIGHT 30
 
 #define TIC
 
@@ -23,12 +24,12 @@
 
 extern std::chrono::time_point<std::chrono::system_clock> clockA;
 extern std::chrono::time_point<std::chrono::system_clock> clockB;
-extern int deltaTime;
+extern float deltaTime;
 extern Console console;
 extern float average(float *numbers, int numNumbers);
 extern int mapa[16][16];
 extern double pi;
 extern Player jugador;
 
-extern Image textureFary;
+extern Image textureAtlas;
 

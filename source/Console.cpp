@@ -115,32 +115,39 @@ Console::refreshCursor() {
 }
 
 Console::drawPixel(int xPos, int yPos, int attribute, int intensity) {
-    if (intensity == 0)
+    if (intensity >= 4)
         buffer[xPos + yPos*sWidth].Char.AsciiChar = 32;
-    else if (intensity == 4)
+    else if (intensity == 0)
         buffer[xPos + yPos*sWidth].Char.AsciiChar = 219;
     else
-        buffer[xPos + yPos*sWidth].Char.AsciiChar = 175 + intensity;
+        buffer[xPos + yPos*sWidth].Char.AsciiChar = 179 - intensity;
     buffer[xPos + yPos*sWidth].Attributes = attribute;
 }
 
-Console::drawWalls() {
-    for (int column = 0; column < dWidth; column++) {
-        drawLine(dHeight/(jugador.distancePerRay2[column]), jugador.texturePerRay2[column], column, jugador.texturePosPerRay2[column]);
-    }
-}
 
-Console::drawLine(float lSize, int texIndex, int lPos, float texPos) {
 
-    float texBufIndex = textureFary.iWidth*texPos;
+Console::drawLine(float lSize, int texIndex, int lPos, float texPos, float intensidad) {
+
+    float texBufIndex = textureAtlas.tWidth*(texPos + texIndex - 1);
     float consoleBufIndex;
     //if (lSize > console.dHeight)
         //lSize = console.dHeight;
-    for (int k = 0; k < lSize; k++) {
-        consoleBufIndex = lPos +(int)((float)dHeight/2 - lSize/2 + k)*dWidth;
-        if ((consoleBufIndex >= 0) && (consoleBufIndex < sWidth*sHeight))
-            buffer[(int)consoleBufIndex].Attributes = textureFary.findPixel((int)texBufIndex, (int)(k*(float)textureFary.iHeight/(float)lSize));
-
+    if (lSize <= dHeight) {
+        for (int k = 0; k < lSize; k++) {
+            //consoleBufIndex = lPos +(int)((float)dHeight/2 - lSize/2 + k)*dWidth;
+            drawPixel(lPos, (int)((float)dHeight/2 - lSize/2 + k), textureAtlas.findPixel((int)texBufIndex, (int)(k*(float)textureAtlas.iHeight/(float)lSize)), (int)intensidad);
+            //buffer[(int)consoleBufIndex].Attributes = textureAtlas.findPixel((int)texBufIndex, (int)(k*(float)textureAtlas.iHeight/(float)lSize));
+        }
     }
+
+    else {
+        float caca = (lSize - dHeight)/2;
+        for (int k = caca; k < lSize - caca; k++) {
+            //consoleBufIndex = lPos +(int)((float)dHeight/2 - lSize/2 + k)*dWidth;
+            drawPixel(lPos, (int)((float)dHeight/2 - lSize/2 + k), textureAtlas.findPixel((int)texBufIndex, (int)(k*(float)textureAtlas.iHeight/(float)lSize)), (int)intensidad);
+            //buffer[(int)consoleBufIndex].Attributes = textureAtlas.findPixel((int)texBufIndex, (int)(k*(float)textureAtlas.iHeight/(float)lSize));
+        }
+    }
+
     return 0;
 }
