@@ -36,7 +36,7 @@ int Player::roundYCoord(float yCoord) {     //lo mismo para la y
 
 
 
-Player::checkLoop(double rayAngle) {        //bucle de hacer avanzar el rayo y comprobar si hay colision
+Player::checkLoop(double rayAngle, int columna) {        //bucle de hacer avanzar el rayo y comprobar si hay colision
     int colision = 0;                       //para empezar no hay colision (tipo de bloque colisionado = 0)
     float tangente = tan(rayAngle);         //guardo la tangente y la cotangnte para no tener  que llamar constantemente las funciones
     float cotangente = tan(pi/2 - rayAngle);
@@ -53,9 +53,12 @@ Player::checkLoop(double rayAngle) {        //bucle de hacer avanzar el rayo y c
 
             if (colision != 0) {        //si hay colision
                 distance = (colXX - xPos)*cos(jugador.angle) + (colXY - yPos)*sin(jugador.angle);   //calculo la distancia proyectada que usa la funcion de dibujar
-                texturePosition = colXX - (int)colXX;   //y en que parte del bloque me he chocado para saber que columna de pixeles de la textura asignar
+                texturePosition = colXX - (int)colXX;   //y en que parte del bloque me he chocado para saber que columna de pixeles de la textura asignada
+                console.columnDistance[columna] = distanceX;
                 break;  //se sale del bucle
             }
+
+            visibleMap[roundYCoord(colXY)][(int)colXX] = 1;
 
             colXY += incY; colXX += cotangente*incY; //incremento el punto de colision para pasar al siguiente (la y va de uno en uno con su signo, ya que son colisiones con
                                                     //el eje x, y la x avanza con la cotangente
@@ -73,8 +76,11 @@ Player::checkLoop(double rayAngle) {        //bucle de hacer avanzar el rayo y c
             if (colision != 0) {
                 distance = (colYX - xPos)*cos(jugador.angle) + (colYY - yPos)*sin(jugador.angle);
                 texturePosition = colYY - (int)colYY;
+                console.columnDistance[columna] = distanceY;
                 break;
             }
+
+            visibleMap[(int)colYY][roundXCoord(colYX)] = 1;
 
             colYX += incX; colYY += abs(tangente)*incY;
 
@@ -91,8 +97,11 @@ Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3
 
     double angleRay;
 
+    float realDistance;
+
     int texture = 0;
 
+    for (int i = 0; i < MAP_SIZE; i++){for (int j = 0; j < MAP_SIZE; j++){visibleMap[i][j] = 0;}}
 
     console.clearScreen();  //borra la pantala (y añade el cielo y el suelo)
     for (int column = 0; column < console.dWidth; column++) {       //bucle que tira un rayo por columna
@@ -110,28 +119,11 @@ Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3
         distanceX = (colXX - xPos)*(colXX - xPos) + (colXY - yPos)*(colXY - yPos);
 
 
-        texture = checkLoop(angleRay);  //y chequeo las colisiones de este rayo
+        texture = checkLoop(angleRay, column);  //y chequeo las colisiones de este rayo
         //texturePerRay1[column] = texture;
-
-        /*if (dpp/distance > console.dHeight) {
-            switch(advance) {
-                case 1:
-                    xPos -= speed*deltaTime*cos(jugador.angle);
-                    yPos -= speed*deltaTime*sin(jugador.angle);
-                break;
-
-                case -1:
-                    xPos += speed*deltaTime*cos(jugador.angle);
-                    yPos += speed*deltaTime*sin(jugador.angle);
-                break;
-            }
-
-            return 0;
-        }*/
-
         //distancePerRay1[column] = distance;
         //texturePosPerRay1[column] = texturePosition;
-        console.drawLine(dpp/distance, texture, column, texturePosition, distance/3);
+        console.drawLine(dpp/distance, texture, column, texturePosition, distance/3, &textureAtlas);
 
     }
     return 0;

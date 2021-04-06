@@ -55,6 +55,8 @@ Console::Console(int width, int height, int font_width, int font_height, bool cu
 
     fpsIndex = 0;
 
+    columnDistance = new float[dWidth];
+
 };
 
 Console::~Console() {
@@ -126,17 +128,17 @@ Console::drawPixel(int xPos, int yPos, int attribute, int intensity) {
 
 
 
-Console::drawLine(float lSize, int texIndex, int lPos, float texPos, float intensidad) {
+Console::drawLine(float lSize, int texIndex, int lPos, float texPos, float intensidad, Image *imagen) { //y con un par de cambios, hago que pueda dibujar columnas de la imagen que me de la gana
 
-    float texBufIndex = textureAtlas.tWidth*(texPos + texIndex - 1);
+    float texBufIndex = imagen->tWidth*(texPos + texIndex - 1);
     float consoleBufIndex;
     //if (lSize > console.dHeight)
         //lSize = console.dHeight;
     if (lSize <= dHeight) {
         for (int k = 0; k < lSize; k++) {
             //consoleBufIndex = lPos +(int)((float)dHeight/2 - lSize/2 + k)*dWidth;
-            drawPixel(lPos, (int)((float)dHeight/2 - lSize/2 + k), textureAtlas.findPixel((int)texBufIndex, (int)(k*(float)textureAtlas.iHeight/(float)lSize)), (int)intensidad);
-            //buffer[(int)consoleBufIndex].Attributes = textureAtlas.findPixel((int)texBufIndex, (int)(k*(float)textureAtlas.iHeight/(float)lSize));
+            drawPixel(lPos, (int)((float)dHeight/2 - lSize/2 + k), imagen->findPixel((int)texBufIndex, (int)(k*(float)imagen->iHeight/(float)lSize)), (int)intensidad);
+            //buffer[(int)consoleBufIndex].Attributes = imagen->findPixel((int)texBufIndex, (int)(k*(float)imagen->iHeight/(float)lSize));
         }
     }
 
@@ -144,8 +146,8 @@ Console::drawLine(float lSize, int texIndex, int lPos, float texPos, float inten
         float caca = (lSize - dHeight)/2;
         for (int k = caca; k < lSize - caca; k++) {
             //consoleBufIndex = lPos +(int)((float)dHeight/2 - lSize/2 + k)*dWidth;
-            drawPixel(lPos, (int)((float)dHeight/2 - lSize/2 + k), textureAtlas.findPixel((int)texBufIndex, (int)(k*(float)textureAtlas.iHeight/(float)lSize)), (int)intensidad);
-            //buffer[(int)consoleBufIndex].Attributes = textureAtlas.findPixel((int)texBufIndex, (int)(k*(float)textureAtlas.iHeight/(float)lSize));
+            drawPixel(lPos, (int)((float)dHeight/2 - lSize/2 + k), imagen->findPixel((int)texBufIndex, (int)(k*(float)imagen->iHeight/(float)lSize)), (int)intensidad);
+            //buffer[(int)consoleBufIndex].Attributes = imagen->findPixel((int)texBufIndex, (int)(k*(float)imagen->iHeight/(float)lSize));
         }
     }
 

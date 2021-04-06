@@ -216,3 +216,75 @@
 	"../headers/global.h"
 	"../headers/Player.h"
 
+1617727280 source:c:\users\usuario\programming\projects\ascii3d\source\console.cpp
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<time.h>
+	<bits/stdc++.h>
+	"../headers/Console.h"
+	"../headers/global.h"
+
+1617727137 c:\users\usuario\programming\projects\ascii3d\headers\console.h
+	<ctime>
+	<windows.h>
+	"Image.h"
+
+1617728215 c:\users\usuario\programming\projects\ascii3d\headers\global.h
+	<chrono>
+	<iostream>
+	<filesystem>
+	"Console.h"
+	"Image.h"
+	"Player.h"
+
+1617724342 c:\users\usuario\programming\projects\ascii3d\headers\image.h
+
+1617727606 c:\users\usuario\programming\projects\ascii3d\headers\player.h
+	"global.h"
+
+1617728163 source:c:\users\usuario\programming\projects\ascii3d\source\global.cpp
+	<chrono>
+	"../headers/global.h"
+	"../headers/Console.h"
+	"../headers/Player.h"
+
+1617724342 source:c:\users\usuario\programming\projects\ascii3d\source\image.cpp
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<fstream>
+	<math.h>
+	"../headers/Image.h"
+
+1617724342 source:c:\users\usuario\programming\projects\ascii3d\source\input.cpp
+	"../headers/Console.h"
+	"../headers/global.h"
+	<math.h>
+
+1617724342 source:c:\users\usuario\programming\projects\ascii3d\source\player.cpp
+	<math.h>
+	<cstdlib>
+	"../headers/global.h"
+	"../headers/Player.h"
+
+1617726997 source:c:\users\usuario\programming\projects\ascii3d\source\main.cpp
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<time.h>
+	<bits/stdc++.h>
+	<string.h>
+	<math.h>
+	"../headers/console.h"
+	"../headers/global.h"
+	"../headers/input.h"
+	"../headers/Image.h"
+	"../headers/Player.h"
+
+1609949203 c:\users\usuario\programming\projects\ascii3d\headers\input.h
+
+1617726997 source:c:\users\usuario\programming\projects\ascii3d\source\object.cpp
+

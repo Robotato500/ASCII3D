@@ -1,6 +1,7 @@
 #pragma once
 #include <ctime>
 #include <windows.h>
+#include "Image.h"
 
 
 class Console {
@@ -22,7 +23,7 @@ class Console {
     int drawString(char *text, int aSize, int xPos, int yPos, bool specify = false, short int attribute = 0);
     int refreshCursor();
     int drawPixel(int xPos, int yPos, int attribute, int intestity = 0);
-    int drawLine(float lSize, int texIndex, int lPos, float texPos, float intensidad);
+    int drawLine(float lSize, int texIndex, int lPos, float texPos, float intensidad, Image *imagen);
     int drawWalls();
 
 
@@ -34,6 +35,8 @@ class Console {
     float fps[50];
     int dWidth;
     int dHeight;
+
+    float *columnDistance;
 
     CHAR_INFO *buffer;
 

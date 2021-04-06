@@ -12,22 +12,25 @@
 #define FONT_HEIGHT 4
 #define HUD_HEIGHT 30
 
-#define TIC
+//#define TIC
 
 #ifdef TIC
 #define FARYPATH "C:/Users/Usuario/Manu/Projects/ASCII3D/texture1.bmp"
 #endif // TIC
 
 #ifndef TIC
-#define FARYPATH "C:/dev/Projects/C(++)/ASCII3D/texture1.bmp"
+#define FARYPATH "C:/Users/usuario/Programming/Projects/ASCII3D/texture1.bmp"
 #endif // TIC
+
+#define MAP_SIZE 16
 
 extern std::chrono::time_point<std::chrono::system_clock> clockA;
 extern std::chrono::time_point<std::chrono::system_clock> clockB;
 extern float deltaTime;
 extern Console console;
 extern float average(float *numbers, int numNumbers);
-extern int mapa[16][16];
+extern int mapa[MAP_SIZE][MAP_SIZE];
+extern bool visibleMap[MAP_SIZE][MAP_SIZE];
 extern double pi;
 extern Player jugador;
 

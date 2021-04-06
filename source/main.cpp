@@ -13,9 +13,6 @@
 #include "../headers/Player.h"
 #define PI 3.14159265
 
-/*  std::string texto = "la chucha chucheira";
-    char texto_Array[texto.length() + 1];
-    strcpy(texto_Array, texto.c_str()); */
 
 
 int main() {
@@ -26,7 +23,6 @@ int main() {
 
     while (true) {
         jugador.rayCast();
-        //console.drawWalls();
         console.refresh();
         if (processInputs() == 69)
             return 0;

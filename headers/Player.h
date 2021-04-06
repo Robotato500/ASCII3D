@@ -6,7 +6,7 @@ class Player {
 
     public:
         Player();
-        int checkLoop(double rayAngle);
+        int checkLoop(double rayAngle, int columna);
         int prepareCollision(double angulo);
         int rayCast();
         int roundXCoord(float xCoord);

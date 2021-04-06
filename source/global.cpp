@@ -13,7 +13,7 @@ Image textureAtlas(FARYPATH, 4);
 double pi = 3.14159265;
 Player jugador;
 
-int mapa[16][16] = {
+int mapa[MAP_SIZE][MAP_SIZE] = {
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -31,6 +31,9 @@ int mapa[16][16] = {
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 };
+
+bool visibleMap[MAP_SIZE][MAP_SIZE];
+
 
 float average(float *numbers, int numNumbers) {
     int sum = 0;
