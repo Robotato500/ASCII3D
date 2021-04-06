@@ -37,12 +37,14 @@
 			<Add option="-static" />
 		</Linker>
 		<Unit filename="headers/Image.h" />
+		<Unit filename="headers/Object.h" />
 		<Unit filename="headers/Player.h" />
 		<Unit filename="headers/console.h" />
 		<Unit filename="headers/global.h" />
 		<Unit filename="headers/input.h" />
 		<Unit filename="source/Console.cpp" />
 		<Unit filename="source/Image.cpp" />
+		<Unit filename="source/Object.cpp" />
 		<Unit filename="source/Player.cpp" />
 		<Unit filename="source/global.cpp" />
 		<Unit filename="source/input.cpp" />
