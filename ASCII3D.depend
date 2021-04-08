@@ -8,9 +8,10 @@
 	<windows.h>
 	"../headers/console.h"
 
-1616680420 c:\users\usuario\manu\projects\ascii3d\headers\console.h
+1617879646 c:\users\usuario\manu\projects\ascii3d\headers\console.h
 	<ctime>
 	<windows.h>
+	"Image.h"
 
 1602249513 source:c:\dev\projects\c(++)\ascii3d\source\console.c
 	<stdio.h>
@@ -87,7 +88,7 @@
 
 1602453983 c:\programming\projects\ascii3d\headers\input.h
 
-1616762888 source:c:\users\usuario\manu\projects\ascii3d\source\console.cpp
+1617881258 source:c:\users\usuario\manu\projects\ascii3d\source\console.cpp
 	<windows.h>
 	<stdio.h>
 	<stdlib.h>
@@ -97,7 +98,7 @@
 	"../headers/Console.h"
 	"../headers/global.h"
 
-1617705152 c:\users\usuario\manu\projects\ascii3d\headers\global.h
+1617879721 c:\users\usuario\manu\projects\ascii3d\headers\global.h
 	<chrono>
 	<iostream>
 	<filesystem>
@@ -105,13 +106,13 @@
 	"Image.h"
 	"Player.h"
 
-1617705128 source:c:\users\usuario\manu\projects\ascii3d\source\global.cpp
+1617879646 source:c:\users\usuario\manu\projects\ascii3d\source\global.cpp
 	<chrono>
 	"../headers/global.h"
 	"../headers/Console.h"
 	"../headers/Player.h"
 
-1616762888 source:c:\users\usuario\manu\projects\ascii3d\source\image.cpp
+1617882352 source:c:\users\usuario\manu\projects\ascii3d\source\image.cpp
 	<stdio.h>
 	<stdlib.h>
 	<iostream>
@@ -126,7 +127,7 @@
 	"../headers/global.h"
 	<math.h>
 
-1616157057 source:c:\users\usuario\manu\projects\ascii3d\source\main.cpp
+1617879646 source:c:\users\usuario\manu\projects\ascii3d\source\main.cpp
 	<windows.h>
 	<stdio.h>
 	<stdlib.h>
@@ -143,13 +144,13 @@
 
 1611662981 c:\users\usuario\manu\projects\ascii3d\headers\input.h
 
-1616760934 source:c:\users\usuario\manu\projects\ascii3d\source\player.cpp
+1617880653 source:c:\users\usuario\manu\projects\ascii3d\source\player.cpp
 	<math.h>
 	<cstdlib>
 	"../headers/global.h"
 	"../headers/Player.h"
 
-1616679382 c:\users\usuario\manu\projects\ascii3d\headers\player.h
+1617882352 c:\users\usuario\manu\projects\ascii3d\headers\player.h
 	"global.h"
 
 1606218798 source:c:\dev\projects\c(++)\ascii3d\source\console.cpp
@@ -287,4 +288,6 @@
 1609949203 c:\users\usuario\programming\projects\ascii3d\headers\input.h
 
 1617726997 source:c:\users\usuario\programming\projects\ascii3d\source\object.cpp
+
+1617880855 source:c:\users\usuario\manu\projects\ascii3d\source\object.cpp
 

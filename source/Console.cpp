@@ -19,8 +19,6 @@ Console::Console(int width, int height, int font_width, int font_height, bool cu
     windowSize = {0, 0, (width - 1), (height - 1)};
     bufferSize = {width, height};
 
-    SetConsoleTitle("La chucha chucheira");
-
 
     CONSOLE_FONT_INFOEX font = { sizeof(CONSOLE_FONT_INFOEX) };
     GetCurrentConsoleFontEx(wHandle, 0, &font);
@@ -61,6 +59,7 @@ Console::Console(int width, int height, int font_width, int font_height, bool cu
 
 Console::~Console() {
     delete []buffer;
+    delete []columnDistance;
 }
 
 
@@ -130,24 +129,19 @@ Console::drawPixel(int xPos, int yPos, int attribute, int intensity) {
 
 Console::drawLine(float lSize, int texIndex, int lPos, float texPos, float intensidad, Image *imagen) { //y con un par de cambios, hago que pueda dibujar columnas de la imagen que me de la gana
 
-    float texBufIndex = imagen->tWidth*(texPos + texIndex - 1);
+    float texBufIndex = imagen->tWidth*(texPos + texIndex);
     float consoleBufIndex;
-    //if (lSize > console.dHeight)
-        //lSize = console.dHeight;
+
     if (lSize <= dHeight) {
         for (int k = 0; k < lSize; k++) {
-            //consoleBufIndex = lPos +(int)((float)dHeight/2 - lSize/2 + k)*dWidth;
             drawPixel(lPos, (int)((float)dHeight/2 - lSize/2 + k), imagen->findPixel((int)texBufIndex, (int)(k*(float)imagen->iHeight/(float)lSize)), (int)intensidad);
-            //buffer[(int)consoleBufIndex].Attributes = imagen->findPixel((int)texBufIndex, (int)(k*(float)imagen->iHeight/(float)lSize));
         }
     }
 
     else {
         float caca = (lSize - dHeight)/2;
         for (int k = caca; k < lSize - caca; k++) {
-            //consoleBufIndex = lPos +(int)((float)dHeight/2 - lSize/2 + k)*dWidth;
             drawPixel(lPos, (int)((float)dHeight/2 - lSize/2 + k), imagen->findPixel((int)texBufIndex, (int)(k*(float)imagen->iHeight/(float)lSize)), (int)intensidad);
-            //buffer[(int)consoleBufIndex].Attributes = imagen->findPixel((int)texBufIndex, (int)(k*(float)imagen->iHeight/(float)lSize));
         }
     }
 

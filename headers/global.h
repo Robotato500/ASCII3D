@@ -12,7 +12,7 @@
 #define FONT_HEIGHT 4
 #define HUD_HEIGHT 30
 
-//#define TIC
+#define TIC
 
 #ifdef TIC
 #define FARYPATH "C:/Users/Usuario/Manu/Projects/ASCII3D/texture1.bmp"
@@ -21,6 +21,7 @@
 #ifndef TIC
 #define FARYPATH "C:/Users/usuario/Programming/Projects/ASCII3D/texture1.bmp"
 #endif // TIC
+
 
 #define MAP_SIZE 16
 

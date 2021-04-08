@@ -54,7 +54,7 @@ Player::checkLoop(double rayAngle, int columna) {        //bucle de hacer avanza
             if (colision != 0) {        //si hay colision
                 distance = (colXX - xPos)*cos(jugador.angle) + (colXY - yPos)*sin(jugador.angle);   //calculo la distancia proyectada que usa la funcion de dibujar
                 texturePosition = colXX - (int)colXX;   //y en que parte del bloque me he chocado para saber que columna de pixeles de la textura asignada
-                console.columnDistance[columna] = distanceX;
+                console.columnDistance[columna] = distanceX; //guarda la distancia al muro en esta columna de pixeles para luego dibujar bien los sprites
                 break;  //se sale del bucle
             }
 
@@ -123,7 +123,7 @@ Player::rayCast(){ //funcion encargada de tirar los rayos y dibujar el espacio 3
         //texturePerRay1[column] = texture;
         //distancePerRay1[column] = distance;
         //texturePosPerRay1[column] = texturePosition;
-        console.drawLine(dpp/distance, texture, column, texturePosition, distance/3, &textureAtlas);
+        console.drawLine(dpp/distance, texture-1, column, texturePosition, distance/3, &textureAtlas);
 
     }
     return 0;

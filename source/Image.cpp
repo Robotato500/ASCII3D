@@ -52,6 +52,7 @@ Image::Image(const char* filePath, int atlas) {
         }
         buffer[i] = currentColorValue;
     }
+    delete []fakeBuffer;
 }
 
 unsigned char Image::findPixel(int x, int y) {

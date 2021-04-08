@@ -11,6 +11,7 @@
 #include "../headers/input.h"
 #include "../headers/Image.h"
 #include "../headers/Player.h"
+#include "../headers/Object.h"
 #define PI 3.14159265
 
 
@@ -20,6 +21,7 @@ int main() {
     console.clearScreen();
     jugador.xPos = 4;
     jugador.yPos = 4;
+    Object monstruo(SPRITE1_PATH, 4);
 
     while (true) {
         jugador.rayCast();
